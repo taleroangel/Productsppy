@@ -1,0 +1,6 @@
+#IntelliJ Folder
+/.idea/
+
+#Eclipse class path
+.classpath
+.project
