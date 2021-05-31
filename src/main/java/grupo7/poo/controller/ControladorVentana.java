@@ -1,2 +1,1 @@
-package grupo7.poo.controller;public class ControladorVentana {
-}
+// Pegar aquí el controlador sugerido por el FXML
