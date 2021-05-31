@@ -1,4 +1,5 @@
 #IntelliJ Folder
+/.vscode/
 /.idea/
 
 #Eclipse class path
