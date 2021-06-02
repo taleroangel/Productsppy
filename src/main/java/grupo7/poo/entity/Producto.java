@@ -59,9 +59,19 @@ public class Producto {
      *
      * @return UUID del producto
      */
+
     @XmlElement
     public UUID getProdId() {
         return prodId;
+    }
+
+    /**
+     * UUID del producto en String
+     *
+     * @return UUID String version
+     */
+    public String getProdIDString() {
+        return prodId.toString();
     }
 
     /**

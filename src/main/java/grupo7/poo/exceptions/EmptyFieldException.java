@@ -1,6 +1,7 @@
 package grupo7.poo.exceptions;
 
 public class EmptyFieldException extends Exception {
+
     public EmptyFieldException() {
     }
 

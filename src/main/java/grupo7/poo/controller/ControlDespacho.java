@@ -29,11 +29,21 @@ public class ControlDespacho {
         gestionCliente = new GestionCliente(datos);
         listaPedidos = datos.getListaPedidos();
     }
-    public ControlDespacho(){
+
+    public ControlDespacho() {
 
     }
 
     //Getters y Setters
+
+    public ArrayList<Pedido> getPedidosCliente(Cliente cliente) {
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        for (Pedido p : this.listaPedidos)
+            if (p.getSolicitante().equals(cliente))
+                pedidos.add(p);
+
+        return pedidos;
+    }
 
     public GestionProductos getGestionProductos() {
         return gestionProductos;
@@ -206,8 +216,7 @@ public class ControlDespacho {
         return true;
     }
 
-    public boolean agregarServicio(Pedido pedido, ServicioAdicional servicio)
-    {
+    public boolean agregarServicio(Pedido pedido, ServicioAdicional servicio) {
         if (pedido == null || servicio == null)
             return false;
 

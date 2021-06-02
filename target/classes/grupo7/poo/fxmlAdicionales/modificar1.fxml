@@ -20,7 +20,7 @@
       </AnchorPane>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="407.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@emoticon/descarga%20(2).png" />
+            <Image url="@../emoticon/descarga%20(2).png" />
          </image>
       </ImageView>
    </children>

@@ -2,28 +2,24 @@ package grupo7.poo.controller;
 
 import grupo7.poo.entity.ArchivoDatos;
 import grupo7.poo.entity.FileHandler;
-import javafx.event.ActionEvent;
+import grupo7.poo.entity.EmergentWindow;
+import grupo7.poo.exceptions.NoInfoException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class ControladorGuardar implements Initializable, FileHandler {
-
-    @FXML
-    private ArchivoDatos internalData;
+public class ControladorGuardar implements FileHandler, EmergentWindow {
 
     /* ----------------------------------------------- FXML Controls ------------------------------------------------ */
 
@@ -41,9 +37,26 @@ public class ControladorGuardar implements Initializable, FileHandler {
     @FXML
     private Button cancelBtn;
 
+    /* ------------------------------------------------ Internal data ----------------------------------------------- */
+    private ArchivoDatos internalData;
+
+    /* ------------------------------------------------ Inicializador ----------------------------------------------- */
+
+    public void initData(ArchivoDatos datos) {
+        try {
+            if (datos == null)
+                throw new NoInfoException(this.getClass().getCanonicalName(), true);
+        } catch (NoInfoException e) {
+            e.printCause();
+        }
+        this.internalData = datos;
+    }
+
+    /* --------------------------------------------------- Eventos -------------------------------------------------- */
+
     @FXML
     void closeFrame(ActionEvent event) {
-        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+        closeWindow(event);
     }
 
     @FXML
@@ -77,10 +90,6 @@ public class ControladorGuardar implements Initializable, FileHandler {
     }
 
     /* -------------------------------------------------- Methods --------------------------------------------------- */
-
-    public void initData(ArchivoDatos archivo) {
-        this.internalData = archivo;
-    }
 
     public static void saveToXml(ArchivoDatos archivos, String ruta) {
 
@@ -125,9 +134,5 @@ public class ControladorGuardar implements Initializable, FileHandler {
         alert.setHeaderText("El archivo fue escrito correctamente!");
         alert.setContentText("El archivo se llama: " + ruta + ", puedes buscarlo en la carpeta del programa!");
         alert.showAndWait();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 }

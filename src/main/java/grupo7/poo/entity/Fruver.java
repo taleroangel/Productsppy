@@ -29,6 +29,14 @@ public class Fruver extends Producto {
     public Fruver() {
     }
 
+    public Boolean getOrganico() {
+        return esOrganico;
+    }
+
+    public boolean isOrganico() {
+        return esOrganico;
+    }
+
     /**
      * Saber si un producto es orgánico
      *

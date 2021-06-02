@@ -55,6 +55,10 @@ public abstract class ServicioAdicional { // clase abstracta de bonoregalo y env
         this.precio = precio;
     }
 
+    public String getWhatType() {
+        return this.getClass().getSimpleName();
+    }
+
     @Override
     public String toString() {
         return "Servicio: " + '\n' +

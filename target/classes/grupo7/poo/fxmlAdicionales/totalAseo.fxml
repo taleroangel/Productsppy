@@ -37,6 +37,7 @@
         </content>
       </ScrollPane>
       <Text layoutX="254.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Total: 0" wrappingWidth="91.33355712890625" />
-      <Button fx:id="volverBtn" layoutX="39.0" layoutY="358.0" mnemonicParsing="false" text="volver" />
+      <Button fx:id="volverBtn" layoutX="39.0" layoutY="358.0" mnemonicParsing="false" onAction="#regresar" text="volver" />
+      <Button fx:id="actualizarBtn" layoutX="331.0" layoutY="71.0" mnemonicParsing="false" onAction="#actualizarLista" text="Actualizar" />
    </children>
 </AnchorPane>

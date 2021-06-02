@@ -6,9 +6,11 @@ import grupo7.poo.servicioAdicional.ServicioAdicional;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -81,7 +83,7 @@ public class Pedido {
 
     @XmlElement
     public Double getPrecio() {
-        this.precioTotal();
+        this.getPrecioTotal();
         return precio;
     }
 
@@ -95,12 +97,24 @@ public class Pedido {
         return fechaRecibido;
     }
 
+    public String getFechaRecibidoString() {
+        if (fechaRecibido == null)
+            fechaRecibido = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = fechaRecibido.getTime();
+        return dateFormat.format(date);
+    }
+
     public void setFechaRecibido(Calendar fechaRecibido) {
         this.fechaRecibido = fechaRecibido;
     }
 
     @XmlElement
     public boolean isPagado() {
+        return pagado;
+    }
+
+    public Boolean getPagado() {
         return pagado;
     }
 
@@ -123,6 +137,14 @@ public class Pedido {
         return solicitante;
     }
 
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public String getClienteNombre() {
+        return getSolicitante().getNombreCompleto();
+    }
+
     public void setSolicitante(Cliente solicitante) {
         this.solicitante = solicitante;
     }
@@ -143,6 +165,10 @@ public class Pedido {
     @XmlElement
     public Producto getProductoSolicitado() {
         return productoSolicitado;
+    }
+
+    public String getProductoNombre() {
+        return productoSolicitado.getNombreComercial();
     }
 
     public void setProductoSolicitado(Producto productoSolicitado) {
@@ -170,7 +196,7 @@ public class Pedido {
     /**
      * Calcular el precio total de un pedido
      */
-    public double precioTotal() {
+    public double getPrecioTotal() {
         //Calcular costo del pedido
         double precioServicios = 0;
         for (ServicioAdicional servi : this.serviciosAdicionales) {
