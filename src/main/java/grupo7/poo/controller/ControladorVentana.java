@@ -8,6 +8,7 @@ import grupo7.poo.servicioAdicional.BonoRegalo;
 import grupo7.poo.servicioAdicional.EnvioPrime;
 import grupo7.poo.servicioAdicional.ServicioAdicional;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -243,6 +245,9 @@ public class ControladorVentana implements Initializable {
 
     @FXML
     private Button modificarPedido;
+
+    @FXML
+    private Button helpButton;
 
     /* --------------------------------------------- Variables privadas --------------------------------------------- */
     private ArchivoDatos datosAplicacion;
@@ -506,6 +511,9 @@ public class ControladorVentana implements Initializable {
             }
 
         }
+
+        precioTotalProductoTexto.setText("Precio Producto: " + producto.getPrecio());
+        precioMasIVATotal.setText("Precio Total: " + producto.calcularPrecio());
     }
 
     @FXML
@@ -793,7 +801,8 @@ public class ControladorVentana implements Initializable {
                     cliente
             );
 
-            pedido.setServiciosAdicionales(new ArrayList<>(servicioNuevo));
+            if (servicioNuevo != null)
+                pedido.setServiciosAdicionales(new ArrayList<>(servicioNuevo));
             gestionDespacho.reservarPedido(pedido);
 
         } catch (NoInfoException e) {
@@ -887,11 +896,65 @@ public class ControladorVentana implements Initializable {
         }
     }
 
+    @FXML
+    void listadoFechas(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(getClass().getResource("../fxmlAdicionales/listaFecha.fxml"))));
+            Parent root = (Parent) loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../style.css")).toExternalForm());
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("../icon.png"))));
+            stage.setTitle("Ver fechas");
+
+            ControladorFechas controller = loader.getController();
+            controller.initData(gestionDespacho);
+
+            stage.setScene(scene);
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.show();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error fatal inesperado");
+            alert.setHeaderText("Ocurrió un error inesperado");
+            alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
+                                         "Error al cargar archivos de la nueva ventana");
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showCredits(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Acerca de...");
+        alert.setHeaderText("Productsppy: Gestión de despacho de productos\n\n" +
+                                    "Proyecto de Programación Orientada a Objetos 2021\n" +
+                                    "Pontificia Universidad Javeriana, Bogotá D.C - Colombia\n" +
+                                    "Carrera de Ingeniería de Sistemas");
+        alert.setContentText("Desarrolladores:\n" +
+                                     "Ángel David Talero Peñuela\n" +
+                                     "Karol Geraldine Ceballos Castro\n" +
+                                     "Sebastián Camilo Hernando Murcia Sierra\n" +
+                                     "Valentina Rozo Gonzalez\n\n" +
+                                     "Profesor: Julian Camilo Daza Rodriguez\n");
+        alert.showAndWait();
+    }
+
     /* ---------------------------------------------- Renders y Cleans ---------------------------------------------- */
+
+    @FXML
+    void requestRender(Event event) {
+        renderClienteTab();
+        renderProductoTab();
+        renderPedidosTab();
+    }
 
     public void renderClienteTab() {  //pinta la ventana de las columnas
         cleanClienteTab();
         this.tablaUsuariosRegistrados.getItems().addAll(gestionDespacho.getGestionCliente().getListaClientes().values());
+        mostrarnombreUsuario.setText("Nombre del Usuario");
     }
 
     public void cleanClienteTab() {
@@ -914,6 +977,7 @@ public class ControladorVentana implements Initializable {
     public void renderProductoTab() {
         cleanProductoTab();
         productosRegistados.getItems().addAll(gestionDespacho.getGestionProductos().getListaProductos().values());
+        ivaProductoTexto.setText("IVA: " + Producto.VALOR_IVA + "%");
     }
 
     public void cleanProductoTab() {
@@ -935,7 +999,7 @@ public class ControladorVentana implements Initializable {
         seleccionarFechaPedido.getEditor().clear();
         grupoServiciosAdicionales.selectToggle(nop1);
         grupoPagado.selectToggle(sipag1);
-
+        updateServiciosBtns(new ActionEvent());
     }
 
     public void renderPedidosTab() {
@@ -951,6 +1015,5 @@ public class ControladorVentana implements Initializable {
         for (Producto p : gestionDespacho.getGestionProductos().getListaProductos().values()) {
             boxIDProducto.getItems().add(p.getProdId());
         }
-
     }
 }

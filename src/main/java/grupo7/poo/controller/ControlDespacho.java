@@ -36,6 +36,17 @@ public class ControlDespacho {
 
     //Getters y Setters
 
+    public ArrayList<EnvioPrime> serviciosTransporte(TipoTransporte e) {
+        ArrayList<EnvioPrime> envios = new ArrayList<>();
+        for (Pedido p : listaPedidos)
+            for (ServicioAdicional s : p.getServiciosAdicionales())
+                if (s instanceof EnvioPrime)
+                    if (((EnvioPrime) s).getTipo() == e)
+                        envios.add((EnvioPrime) s);
+
+        return envios;
+    }
+
     public ArrayList<Pedido> getPedidosCliente(Cliente cliente) {
         ArrayList<Pedido> pedidos = new ArrayList<>();
         for (Pedido p : this.listaPedidos)

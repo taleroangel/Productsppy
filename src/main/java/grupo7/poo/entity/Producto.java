@@ -18,7 +18,7 @@ public class Producto {
     protected double iva;
 
     // Static
-    protected static final int VALOR_IVA = 19; //para que el hijo tenga acceso
+    public static final int VALOR_IVA = 19;
 
     /**
      * Calcular el IVA del producto
@@ -158,7 +158,7 @@ public class Producto {
      * @return Precio del producto con el IVA
      */
     public double calcularPrecio() {
-        return this.precio + (this.precio * this.iva);
+        return this.precio + (this.precio * (this.iva/100.0));
     }
 
     @Override

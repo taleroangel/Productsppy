@@ -93,7 +93,7 @@ public class VentanaDespacho extends Application {
     private final static String ICON_NAME = "../icon.png";
     private final static String MAIN_FXML_NAME = "../ventanasPrincipales.fxml";
     private final static String STYLE_SHEET_NAME = "../style.css";
-    private final static String WINDOW_NAME = "Gestión de productos - ";
+    private final static String WINDOW_NAME = "Gestión de productos";
 
     @Override
     public void start(Stage stage) throws Exception {

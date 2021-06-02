@@ -137,6 +137,10 @@ public class Pedido {
         return solicitante;
     }
 
+    public String getDireccionSolicitante() {
+        return solicitante.getDireccion();
+    }
+
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
