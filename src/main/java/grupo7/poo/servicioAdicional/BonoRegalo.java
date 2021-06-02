@@ -1,18 +1,15 @@
 package grupo7.poo.servicioAdicional;
 
-import grupo7.poo.controller.ControlDespacho;
-import grupo7.poo.entity.Pedido;
-
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
-import java.util.Scanner;
-import java.util.UUID;
 
+@XmlRootElement
 public class BonoRegalo extends ServicioAdicional { //subclase de la clase de servicio adicional
 
     //Atributos
     public String comercioAsociado;
-    public String mensaje;
     public Calendar fechaVencimiento;
+    public String mensaje;
 
     public BonoRegalo(
             long codigoServicio,
@@ -24,8 +21,8 @@ public class BonoRegalo extends ServicioAdicional { //subclase de la clase de se
     ) {
         super(codigoServicio, nombreServicio, precio);
         this.comercioAsociado = comercioAsociado;
-        this.mensaje = mensaje;
         this.fechaVencimiento = fechaVencimiento;
+        this.mensaje = mensaje;
     }
 
     public BonoRegalo(
@@ -35,6 +32,9 @@ public class BonoRegalo extends ServicioAdicional { //subclase de la clase de se
     ) {
         super(codigoServicio, precio);
         this.comercioAsociado = comercioAsociado;
+    }
+
+    public BonoRegalo() {
     }
 
     //Getter n Setter
@@ -65,42 +65,7 @@ public class BonoRegalo extends ServicioAdicional { //subclase de la clase de se
 
     @Override
     public double calcularPrecio() {
-        //metodo sobreescrito
-        Scanner scaner = new Scanner(System.in);
-        double precioTotal = this.precio;
-        System.out.println("Desea adquirir una tarjeta de regalo? S/N");
-        char respuesta = scaner.next().charAt(0);
-
-        while (
-                respuesta != 'n' &&
-                        'N' != respuesta &&
-                        respuesta != 's' &&
-                        respuesta != 'S'
-        ) {
-            System.out.println("Opción inválida");
-            System.out.println("  ");
-            respuesta = scaner.next().charAt(0);
-        }
-        if (respuesta == 's' || respuesta == 'S') {
-            //System.out.println("Ingrese el valor de la tarjeta: ");
-            //double valorTarjeta = scaner.nextDouble();
-            System.out.println(
-                    "Ingrese el mensaje personalizado que quiere en la tarjeta: "
-            );
-            this.mensaje = scaner.next();
-            System.out.println("Ingrese el codigo de su pedido");
-            String id = scaner.next();
-
-            Pedido pedido = new Pedido();
-            ControlDespacho control = new ControlDespacho();
-            pedido = control.buscarPedido(UUID.fromString(id));
-            int dia = pedido.getFechaRecibido().getTime().getDay();
-            int mes = pedido.getFechaRecibido().getTime().getMonth();
-            int anno = pedido.getFechaRecibido().getTime().getYear();
-
-            this.fechaVencimiento.set(anno, mes + 6, dia);
-        }
-        return precioTotal;
+        return this.precio;
     }
 
     @Override

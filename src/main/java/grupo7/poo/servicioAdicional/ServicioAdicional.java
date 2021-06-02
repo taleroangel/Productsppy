@@ -1,5 +1,8 @@
 package grupo7.poo.servicioAdicional;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public abstract class ServicioAdicional { // clase abstracta de bonoregalo y envioPrima
 
     //Atributos
@@ -21,6 +24,10 @@ public abstract class ServicioAdicional { // clase abstracta de bonoregalo y env
     public ServicioAdicional(long codigoServicio, double precio) {
         this.codigoServicio = codigoServicio;
         this.precio = precio;
+    }
+
+    //Constructor por defecto requerido por JAXB
+    public ServicioAdicional() {
     }
 
     //Getters y Setters

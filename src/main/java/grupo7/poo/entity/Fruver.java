@@ -1,11 +1,33 @@
 package grupo7.poo.entity;
 
-public class Fruver extends Producto { // ---------subclase del producto--------------------
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Fruver")
+public class Fruver extends Producto {
 
     //Atributos
     private boolean esOrganico;
     private double impuestoLocal;
     private String nombreHacienda;
+
+    //Constructores
+    public Fruver(
+            String nombreComercial,
+            double precio,
+            String tienda,
+            boolean esOrganico,
+            double impuestoLocal,
+            String nombreHacienda
+    ) {
+        super(nombreComercial, precio, tienda);
+        this.esOrganico = esOrganico;
+        this.impuestoLocal = impuestoLocal;
+        this.nombreHacienda = nombreHacienda;
+    }
+
+    //Constructor vacío requerido por JAXB
+    public Fruver() {
+    }
 
     /**
      * Saber si un producto es orgánico
@@ -61,20 +83,6 @@ public class Fruver extends Producto { // ---------subclase del producto--------
         this.nombreHacienda = nombreHacienda;
     }
 
-    //Constructores
-    public Fruver(
-            String nombreComercial,
-            double precio,
-            String tienda,
-            boolean esOrganico,
-            double impuestoLocal,
-            String nombreHacienda
-    ) {
-        super(nombreComercial, precio, tienda);
-        this.esOrganico = esOrganico;
-        this.impuestoLocal = impuestoLocal;
-        this.nombreHacienda = nombreHacienda;
-    }
 
     @Override
     public double calcularPrecio() {

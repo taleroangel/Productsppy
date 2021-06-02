@@ -1,8 +1,14 @@
 package grupo7.poo.entity;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.UUID;
 
-public class Producto { //------------------clase herencia padre de fruver y aseo------------------------------
+/**
+ * Clase base para Fruver y Aseo
+ */
+@XmlRootElement(name = "Producto")
+public class Producto {
 
     // Atributos
     protected UUID prodId;
@@ -25,7 +31,11 @@ public class Producto { //------------------clase herencia padre de fruver y ase
     }
 
     // Constructores
-    public Producto(String nombreComercial, double precio, String tienda, UUID id) {
+    public Producto(
+            String nombreComercial,
+            double precio,
+            String tienda,
+            UUID id) {
         this.nombreComercial = nombreComercial;
         this.precio = precio;
         this.tienda = tienda;
@@ -38,37 +48,96 @@ public class Producto { //------------------clase herencia padre de fruver y ase
         this(nombreComercial, precio, tienda, UUID.randomUUID());
     }
 
+    public Producto() {
+        prodId = UUID.randomUUID();
+    }
+
     // Getters y Setters
+
+    /**
+     * Obtener el ID de un producto
+     *
+     * @return UUID del producto
+     */
+    @XmlElement
     public UUID getProdId() {
         return prodId;
     }
 
+    /**
+     * Establecer el UUID de un producto
+     *
+     * @param prodId UUID del producto
+     */
+    public void setProdId(UUID prodId) {
+        this.prodId = prodId;
+    }
+
+    /**
+     * Obtener el nombre comercial de un producto
+     *
+     * @return Nombre comercial de un producto
+     */
+    @XmlElement
     public String getNombreComercial() {
         return nombreComercial;
     }
 
+    /**
+     * Establecer el nombre comercial de un producto
+     *
+     * @param nombreComercial Nombre comercial del producto
+     */
     public void setNombreComercial(String nombreComercial) {
         this.nombreComercial = nombreComercial;
     }
 
+    /**
+     * Obtener el precio de un producto
+     *
+     * @return Precio del producto
+     */
+    @XmlElement
     public double getPrecio() {
         return precio;
     }
 
+    /**
+     * Establecer el precio de un producto
+     *
+     * @param precio Nuevo precio a establecer
+     */
     public void setPrecio(double precio) {
         this.precio = precio;
         // Recalcular el IVA
         this.iva = calcularIVA(this.precio);
     }
 
+    /**
+     * Obtener el nombre de la tienda
+     *
+     * @return Nombre de la tienda
+     */
+    @XmlElement
     public String getTienda() {
         return tienda;
     }
 
+    /**
+     * Establecer la tienda
+     *
+     * @param tienda Nombre de la tienda a establecer
+     */
     public void setTienda(String tienda) {
         this.tienda = tienda;
     }
 
+    /**
+     * Calcula el precio del IVA y lo retorna
+     *
+     * @return precio del IVA de un producto
+     */
+    @XmlElement(name = "IVAProducto")
     public double getIva() {
         return iva;
     }

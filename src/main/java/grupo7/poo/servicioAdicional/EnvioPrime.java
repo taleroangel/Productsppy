@@ -2,6 +2,9 @@ package grupo7.poo.servicioAdicional;
 
 import grupo7.poo.entity.TipoTransporte;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class EnvioPrime extends ServicioAdicional {// subclase de la clase de servicio adicional
 
     //Atributos
@@ -22,6 +25,9 @@ public class EnvioPrime extends ServicioAdicional {// subclase de la clase de se
         this.distancia = distancia;
         this.tipo = tipo;
         this.numeroCajas = numeroCajas;
+    }
+
+    public EnvioPrime() {
     }
 
     public Double getDistancia() {

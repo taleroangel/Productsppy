@@ -3,6 +3,9 @@ package grupo7.poo.entity;
 import grupo7.poo.servicioAdicional.EnvioPrime;
 import grupo7.poo.servicioAdicional.ServicioAdicional;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,7 +13,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 //Imports
-
+@XmlRootElement
 public class Pedido {
 
     //Atributos
@@ -76,15 +79,18 @@ public class Pedido {
         this.numPedido = numPedido;
     }
 
+    @XmlElement
     public Double getPrecio() {
         this.precioTotal();
         return precio;
     }
 
+    @XmlElement
     public UUID getNumPedido() {
         return numPedido;
     }
 
+    @XmlElement
     public Calendar getFechaRecibido() {
         return fechaRecibido;
     }
@@ -93,6 +99,7 @@ public class Pedido {
         this.fechaRecibido = fechaRecibido;
     }
 
+    @XmlElement
     public boolean isPagado() {
         return pagado;
     }
@@ -101,6 +108,7 @@ public class Pedido {
         this.pagado = pagado;
     }
 
+    @XmlElement
     public String getNombreRepartidor() {
         return nombreRepartidor;
     }
@@ -110,6 +118,7 @@ public class Pedido {
     }
 
     //Getters y Setters (Asociaciones)
+    @XmlElement
     public Cliente getSolicitante() {
         return solicitante;
     }
@@ -118,6 +127,9 @@ public class Pedido {
         this.solicitante = solicitante;
     }
 
+    //Important XML Element
+    @XmlElement(name = "servicio", type = ServicioAdicional.class)
+    @XmlElementWrapper(name = "listaServicios")
     public ArrayList<ServicioAdicional> getServiciosAdicionales() {
         return serviciosAdicionales;
     }
@@ -128,6 +140,7 @@ public class Pedido {
         this.serviciosAdicionales = serviciosAdicionales;
     }
 
+    @XmlElement
     public Producto getProductoSolicitado() {
         return productoSolicitado;
     }
@@ -157,7 +170,7 @@ public class Pedido {
     /**
      * Calcular el precio total de un pedido
      */
-    public void precioTotal() {
+    public double precioTotal() {
         //Calcular costo del pedido
         double precioServicios = 0;
         for (ServicioAdicional servi : this.serviciosAdicionales) {
@@ -174,19 +187,9 @@ public class Pedido {
             costoTotalProducto += 8000;
         }
 
-        //Al final se debe mostrar el precio total del pedido desglosado en Pedido más servicios, y
-        //guardar si el pago fue realizado.
-        System.out.println(
-                "*---------------------------------------------------------------*"
-        );
-        System.out.println("Precio del pedido: \t\t\t" + costoTotalProducto + '$');
-        System.out.println("Precio de los servicios: \t" + precioServicios + '$');
-        System.out.println("Precio del despacho: \t" + costoDespacho + '$');
-        System.out.println(
-                "*---------------------------------------------------------------*"
-        );
-
         if (this.pagado) this.precio = costoTotalProducto + precioServicios + costoDespacho;
+
+        return costoTotalProducto + precioServicios + costoDespacho;
     }
 
     /**

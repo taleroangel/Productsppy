@@ -1,40 +1,60 @@
 package grupo7.poo.entity;
 
-import grupo7.poo.controller.GestionProductos;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Clase que contiene todos los datos del programa
+ */
 @XmlRootElement
-public class ArchivoControl {
-    private ProductosMap mapaProductos;
-    private ClientesMap mapaClientes;
-    private ArrayList<Pedido> pedidos;
+public class ArchivoDatos {
 
-    public ProductosMap getMapaProductos() {
-        return mapaProductos;
+    {
+        listaClientes = new HashMap<Long, Cliente>();
+        listaProductos = new HashMap<UUID, Producto>();
+        listaPedidos = new ArrayList<>();
     }
 
-    public void setMapaProductos(ProductosMap mapaProductos) {
-        this.mapaProductos = mapaProductos;
+    //Atributos
+    private Map<Long, Cliente> listaClientes;
+    private Map<UUID, Producto> listaProductos;
+    private ArrayList<Pedido> listaPedidos;
+
+    //Accessors Clientes
+    @XmlElementWrapper(name = "listaClientes")
+    @XmlElement(name = "cliente")
+    public Map<Long, Cliente> getListaClientes() {
+        return listaClientes;
     }
 
-    public ClientesMap getMapaClientes() {
-        return mapaClientes;
+    public void setListaClientes(Map<Long, Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
-    public void setMapaClientes(ClientesMap mapaClientes) {
-        this.mapaClientes = mapaClientes;
+    //Accessors Productos
+    @XmlElementWrapper(name = "listaProductos")
+    @XmlElement(name = "producto")
+    public Map<UUID, Producto> getListaProductos() {
+        return listaProductos;
     }
 
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+    public void setListaProductos(Map<UUID, Producto> listaProductos) {
+        this.listaProductos = listaProductos;
     }
 
-    public void setPedidos(ArrayList<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    //Accessors Pedidos
+    @XmlElementWrapper(name = "listaPedidos")
+    @XmlElement(name = "pedido", type = Pedido.class)
+    public ArrayList<Pedido> getListaPedidos() {
+        return listaPedidos;
+    }
+
+    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
     }
 }
