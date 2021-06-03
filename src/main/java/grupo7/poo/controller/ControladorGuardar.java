@@ -108,4 +108,13 @@ public class ControladorGuardar {
 
         return null;
     }
+
+    public static void saveToJson(ArchivoDatos archivo, String ruta) {
+        /// Guardar variable archivo en un JSON en la dirección RUTA
+    }
+
+    public static ArchivoDatos getFromJson(String ruta) {
+        //Recuperar archivos desde un .json en RUTA y retornar ArchivoDatos
+        return null;
+    }
 }

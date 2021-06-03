@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<productos>
+    <listaProductos>
+        <entry>
+            <key>a1ca424e-278f-430d-af84-1a3bb48e4746</key>
+            <value>
+                <IVAProducto>4921.0</IVAProducto>
+                <nombreComercial>Shampoo antipulgas para perro</nombreComercial>
+                <precio>25900.0</precio>
+                <prodId>a1ca424e-278f-430d-af84-1a3bb48e4746</prodId>
+                <tienda>Supermercado superéxito</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>d20e7120-0300-423b-8111-1054650e69bc</key>
+            <value>
+                <IVAProducto>361.0</IVAProducto>
+                <nombreComercial>Jabón para lavar ropa</nombreComercial>
+                <precio>1900.0</precio>
+                <prodId>d20e7120-0300-423b-8111-1054650e69bc</prodId>
+                <tienda>Surtivecino</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>671a6b40-9654-4256-bfda-6095a2e3bab6</key>
+            <value>
+                <IVAProducto>2345.55</IVAProducto>
+                <nombreComercial>Recursos industriales</nombreComercial>
+                <precio>12345.0</precio>
+                <prodId>671a6b40-9654-4256-bfda-6095a2e3bab6</prodId>
+                <tienda>super clean!</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>3d063045-48f6-4b22-887f-063a05d6bec7</key>
+            <value>
+                <IVAProducto>2850.0</IVAProducto>
+                <nombreComercial>Chocolates para regalar</nombreComercial>
+                <precio>15000.0</precio>
+                <prodId>3d063045-48f6-4b22-887f-063a05d6bec7</prodId>
+                <tienda>Dulces sueños</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>b9484755-5a96-4902-acad-8f72d1004bd5</key>
+            <value>
+                <IVAProducto>12433.03</IVAProducto>
+                <nombreComercial>kit de limpieza de hospitales</nombreComercial>
+                <precio>65437.0</precio>
+                <prodId>b9484755-5a96-4902-acad-8f72d1004bd5</prodId>
+                <tienda>burbujas</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>0194284e-7ba6-48f3-be07-ce20db27e5da</key>
+            <value>
+                <IVAProducto>8360.0</IVAProducto>
+                <nombreComercial>canasta de verdurass</nombreComercial>
+                <precio>44000.0</precio>
+                <prodId>0194284e-7ba6-48f3-be07-ce20db27e5da</prodId>
+                <tienda>surtideli</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>68186402-de8c-4903-871c-b953f540b85d</key>
+            <value>
+                <IVAProducto>6460.0</IVAProducto>
+                <nombreComercial>fertilizantes</nombreComercial>
+                <precio>34000.0</precio>
+                <prodId>68186402-de8c-4903-871c-b953f540b85d</prodId>
+                <tienda>plantas y decoraciones</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>223799fc-d4e5-4d95-8aa0-72bad46c013a</key>
+            <value>
+                <IVAProducto>6080.0</IVAProducto>
+                <nombreComercial>canasta de frutas</nombreComercial>
+                <precio>32000.0</precio>
+                <prodId>223799fc-d4e5-4d95-8aa0-72bad46c013a</prodId>
+                <tienda>fruteria patty</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>3a351a85-8f80-451d-a52b-b86b9637f5ad</key>
+            <value>
+                <IVAProducto>18765.35</IVAProducto>
+                <nombreComercial>trapos anti polvo</nombreComercial>
+                <precio>98765.0</precio>
+                <prodId>3a351a85-8f80-451d-a52b-b86b9637f5ad</prodId>
+                <tienda>aseo markplace</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>b0e4722e-5379-49bf-9d01-7fe75040f0f3</key>
+            <value>
+                <IVAProducto>6567.73</IVAProducto>
+                <nombreComercial>spray anti manchas</nombreComercial>
+                <precio>34567.0</precio>
+                <prodId>b0e4722e-5379-49bf-9d01-7fe75040f0f3</prodId>
+                <tienda>limpia ya!</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>51e6efc6-5417-46cf-ac33-5d2e1c0ce553</key>
+            <value>
+                <IVAProducto>6460.0</IVAProducto>
+                <nombreComercial>fresas 100 frescas</nombreComercial>
+                <precio>34000.0</precio>
+                <prodId>51e6efc6-5417-46cf-ac33-5d2e1c0ce553</prodId>
+                <tienda>surtimax</tienda>
+            </value>
+        </entry>
+    </listaProductos>
+</productos>

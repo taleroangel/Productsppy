@@ -106,6 +106,8 @@ public class VentanaDespacho extends Application {
     private final static String STYLE_SHEET_NAME = "../style.css";
     private final static String WINDOW_NAME = "Gestión de productos";
 
+    private ArchivoDatos datos;
+
     @Override
     public void start(Stage stage) throws Exception {
         try {
@@ -118,7 +120,7 @@ public class VentanaDespacho extends Application {
             stage.setTitle(WINDOW_NAME);
 
             //Crear nuevos datos para trabajar
-            ArchivoDatos datos = new ArchivoDatos();
+            datos = new ArchivoDatos();
             ControladorVentana controller = loader.getController();
             controller.initData(datos);
 
