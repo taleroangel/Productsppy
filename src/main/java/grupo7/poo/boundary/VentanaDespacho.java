@@ -118,7 +118,7 @@ public class VentanaDespacho extends Application {
             stage.setTitle(WINDOW_NAME);
 
             //Crear nuevos datos para trabajar
-            ArchivoDatos datos = infoPrueba();
+            ArchivoDatos datos = new ArchivoDatos();
             ControladorVentana controller = loader.getController();
             controller.initData(datos);
 

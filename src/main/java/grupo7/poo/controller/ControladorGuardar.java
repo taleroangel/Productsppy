@@ -1,94 +1,18 @@
 package grupo7.poo.controller;
 
 import grupo7.poo.entity.ArchivoDatos;
-import grupo7.poo.entity.FileHandler;
-import grupo7.poo.entity.EmergentWindow;
-import grupo7.poo.entity.Producto;
-import grupo7.poo.exceptions.NoInfoException;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 
+import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ControladorGuardar implements FileHandler, EmergentWindow {
-
-    /* ----------------------------------------------- FXML Controls ------------------------------------------------ */
-
-    //Toggle group
-    @FXML
-    private ToggleGroup selectGroup;
-    @FXML
-    private RadioButton xmlSel;
-    @FXML
-    private RadioButton jsonSel;
-
-    //Botones
-    @FXML
-    private Button saveBtn;
-    @FXML
-    private Button cancelBtn;
-
-    /* ------------------------------------------------ Internal data ----------------------------------------------- */
-    private ArchivoDatos internalData;
-
-    /* ------------------------------------------------ Inicializador ----------------------------------------------- */
-
-    public void initData(ArchivoDatos datos) {
-        try {
-            if (datos == null)
-                throw new NoInfoException(this.getClass().getCanonicalName(), true);
-        } catch (NoInfoException e) {
-            e.printCause();
-        }
-        this.internalData = datos;
-    }
-
-    /* --------------------------------------------------- Eventos -------------------------------------------------- */
-
-    @FXML
-    void closeFrame(ActionEvent event) {
-        closeWindow(event);
-    }
-
-    @FXML
-    void saveFile(ActionEvent event) {
-        // Entrar en bucle mientras termina el procedimiento
-
-        boolean procedureDone = false;
-        //Ningún botón
-        if (selectGroup.getSelectedToggle() == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Un error ha ocurrido...");
-            alert.setHeaderText("Ninguna opción fue seleccionada!");
-            alert.setContentText("Porfavor selecciona una opción");
-            alert.showAndWait();
-        }
-
-        //Boton de XML
-        else if (selectGroup.getSelectedToggle().equals(xmlSel)) {
-            saveToXml(this.internalData, DEFAULT_FILE_NAME + ".xml");
-            procedureDone = true;
-        }
-
-        //Botón de JSON
-        else if (selectGroup.getSelectedToggle().equals(jsonSel)) {
-            procedureDone = true;
-        }
-
-        // Cerrar la ventana luego de terminar el procedimiento
-        if (procedureDone)
-            closeFrame(event);
-    }
+public class ControladorGuardar {
 
     /* -------------------------------------------------- Methods --------------------------------------------------- */
     public static <T> void saveToXml(T archivos, String ruta) {
@@ -133,5 +57,55 @@ public class ControladorGuardar implements FileHandler, EmergentWindow {
         alert.setHeaderText("El archivo fue escrito correctamente!");
         alert.setContentText("El archivo se llama: " + ruta + ", puedes buscarlo en la carpeta del programa!");
         alert.showAndWait();
+    }
+
+    public static ArchivoDatos getFromXml(String ruta) {
+        try (FileReader fr = new FileReader(ruta)) {
+            ArchivoDatos archivos = JAXB.unmarshal(fr, ArchivoDatos.class);
+            if (archivos == null)
+                throw new NullPointerException();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Archivos cargados desde archivos");
+            alert.setHeaderText("Los archivos fueron cargados!");
+            alert.setContentText("El archivo: " + ruta + " fue cargado");
+            alert.showAndWait();
+
+            return archivos;
+
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("El archivo no existeo o no pudo ser encontrado!");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("El archivo no pudo leerse, puede estar en modo sólo lectura");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("El archivo se encontraba vacío o no pudo leerse correctamente");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("Ha ocurrido un error desconocido");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
