@@ -1,9 +1,12 @@
 package grupo7.poo.servicioAdicional;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 
-@XmlRootElement(name = "servicioAdicional")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "bonoRegalo")
 public class BonoRegalo extends ServicioAdicional { //subclase de la clase de servicio adicional
 
     //Atributos

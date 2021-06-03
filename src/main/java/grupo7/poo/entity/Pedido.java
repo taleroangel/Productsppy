@@ -164,7 +164,10 @@ public class Pedido {
 
     //Important XML Element
     @XmlElementWrapper(name = "servicios")
-    @XmlElement
+    @XmlElements({
+            @XmlElement(name = "bonoRegalo", type = BonoRegalo.class),
+            @XmlElement(name = "envioPrime", type = EnvioPrime.class)
+    })
     public ArrayList<ServicioAdicional> getServiciosAdicionales() {
         return serviciosAdicionales;
     }
