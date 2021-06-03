@@ -562,6 +562,7 @@ public class ControladorVentana implements Initializable {
             alert.setHeaderText("Ocurrió un error inesperado");
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error en la clase: ControladorVentana, datosAplicacion no se ha inicializado");
+            alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error fatal inesperado");
@@ -569,6 +570,7 @@ public class ControladorVentana implements Initializable {
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error al cargar archivos de la nueva ventana");
             e.printStackTrace();
+            alert.showAndWait();
         }
     }
 
@@ -579,8 +581,48 @@ public class ControladorVentana implements Initializable {
 
 
     @FXML
-    void modificarPedido(ActionEvent event) {
+    void modificarPedidoSelect(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(getClass().getResource("../fxmlAdicionales/modificar1.fxml"))));
+            Parent root = (Parent) loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../style.css")).toExternalForm());
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("../icon.png"))));
+            stage.setTitle("Modificar un producto");
 
+            ControladorServicios controller = loader.getController();
+
+            if (idPedidobox.getSelectionModel().getSelectedItem() == null)
+                throw new NoInfoException();
+
+            controller.initData(
+                    gestionDespacho.buscarPedido(
+                            idPedidobox.getSelectionModel().getSelectedItem()
+                    )
+            );
+
+            stage.setScene(scene);
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.show();
+
+        } catch (NullPointerException | NoInfoException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ocurrió un error");
+            alert.setHeaderText("No has seleccionado ningún pedido");
+            alert.setContentText("Por favor selecciona un pedido");
+            alert.showAndWait();
+            e.printStackTrace();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error fatal inesperado");
+            alert.setHeaderText("Ocurrió un error inesperado");
+            alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
+                                         "Error al cargar archivos de la nueva ventana");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -668,6 +710,7 @@ public class ControladorVentana implements Initializable {
             alert.setHeaderText("Ocurrió un error inesperado");
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error en la clase: ControladorVentana, datosAplicacion no se ha inicializado");
+            alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error fatal inesperado");
@@ -675,6 +718,7 @@ public class ControladorVentana implements Initializable {
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error al cargar archivos de la nueva ventana");
             e.printStackTrace();
+            alert.showAndWait();
         }
     }
 
@@ -685,7 +729,7 @@ public class ControladorVentana implements Initializable {
 
     @FXML
     void verReporteProducto(ActionEvent event) {
-
+        ControladorGuardar.saveToXml(new MapXmlExporter(this.gestionDespacho.getGestionProductos().getListaProductos()), "./archivos/archivo.xml");
     }
 
     /* ----------------------------------------------- Tab de pedidos ----------------------------------------------- */
@@ -731,6 +775,7 @@ public class ControladorVentana implements Initializable {
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error al cargar archivos de la nueva ventana");
             e.printStackTrace();
+            alert.showAndWait();
         }
     }
 
@@ -763,6 +808,7 @@ public class ControladorVentana implements Initializable {
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error al cargar archivos de la nueva ventana");
             e.printStackTrace();
+            alert.showAndWait();
         }
     }
 
@@ -893,6 +939,7 @@ public class ControladorVentana implements Initializable {
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error al cargar archivos de la nueva ventana");
             e.printStackTrace();
+            alert.showAndWait();
         }
     }
 
@@ -922,6 +969,7 @@ public class ControladorVentana implements Initializable {
             alert.setContentText("Contácta a los desarrolladores, aquí hay más información por si lo necesitas:\n" +
                                          "Error al cargar archivos de la nueva ventana");
             e.printStackTrace();
+            alert.showAndWait();
         }
     }
 

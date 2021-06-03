@@ -4,7 +4,7 @@ import grupo7.poo.entity.TipoTransporte;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "envioPrime")
 public class EnvioPrime extends ServicioAdicional {// subclase de la clase de servicio adicional
 
     //Atributos
@@ -13,7 +13,13 @@ public class EnvioPrime extends ServicioAdicional {// subclase de la clase de se
     private Integer numeroCajas;
 
     //Constructor
-    public EnvioPrime(long codigoServicio, String nombreServicio, double precio, Double distancia, TipoTransporte tipo, Integer numeroCajas) {
+    public EnvioPrime(
+            long codigoServicio,
+            String nombreServicio,
+            double precio,
+            Double distancia,
+            TipoTransporte tipo,
+            Integer numeroCajas) {
         super(codigoServicio, nombreServicio, precio);
         this.distancia = distancia;
         this.tipo = tipo;

@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ArchivoDatos {
 
-    {
+    public ArchivoDatos() {
         listaClientes = new HashMap<Long, Cliente>();
         listaProductos = new HashMap<UUID, Producto>();
         listaPedidos = new ArrayList<>();

@@ -399,8 +399,8 @@
                                             </font>
                                         </Text>
                                         <ChoiceBox fx:id="idPedidobox" layoutX="14.0" layoutY="32.0" prefHeight="26.0" prefWidth="137.0" />
-                                        <Button fx:id="eliminarPedidoBtn" layoutX="235.0" layoutY="69.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
-                                        <Button fx:id="modificarPedido" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Modificar" />
+                                        <Button fx:id="eliminarPedidoBtn" layoutX="235.0" layoutY="64.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
+                                        <Button fx:id="modificarPedido" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#modificarPedidoSelect" prefHeight="26.0" prefWidth="70.0" text="Modificar" />
                                     </children>
                                 </AnchorPane>
                                 <ImageView fitHeight="72.0" fitWidth="119.0" layoutX="423.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">

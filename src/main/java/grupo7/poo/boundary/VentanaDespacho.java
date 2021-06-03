@@ -5,6 +5,7 @@ import grupo7.poo.controller.ControladorGuardar;
 import grupo7.poo.controller.ControladorVentana;
 import grupo7.poo.entity.*;
 import grupo7.poo.servicioAdicional.BonoRegalo;
+import grupo7.poo.servicioAdicional.EnvioPrime;
 import grupo7.poo.servicioAdicional.ServicioAdicional;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
@@ -78,11 +80,20 @@ public class VentanaDespacho extends Application {
         centralDespacho.reservarPedido(new Pedido(new GregorianCalendar(2021, Calendar.MAY, 9),
                 true, "Pedro", producto8, cliente3));
 
-        centralDespacho.reservarPedido(new Pedido(new GregorianCalendar(2021, Calendar.MAY, 15),
-                true, "Carlos", producto6, cliente4));
+        Pedido last_petition = new Pedido(new GregorianCalendar(2021, Calendar.MAY, 15),
+                true, "Carlos", producto6, cliente4);
 
 
         ServicioAdicional servicio1 = new BonoRegalo(1234L, "Bono spotify", 25000, "Tiendas Éxito", "Sin mensaje", Calendar.getInstance());
+        ServicioAdicional servicio2 = new EnvioPrime(1234L, "Bono spotify", 25000, 5.0, TipoTransporte.MOTO, 5);
+
+        ArrayList<ServicioAdicional> servicios = new ArrayList<>();
+        servicios.add(servicio1);
+        servicios.add(servicio2);
+
+        last_petition.setServiciosAdicionales(new ArrayList<>(servicios));
+
+        centralDespacho.reservarPedido(last_petition);
 
         System.out.println("La información de pruebas fue insertada correctamente");
 

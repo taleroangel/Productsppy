@@ -3,6 +3,7 @@ package grupo7.poo.controller;
 import grupo7.poo.entity.ArchivoDatos;
 import grupo7.poo.entity.FileHandler;
 import grupo7.poo.entity.EmergentWindow;
+import grupo7.poo.entity.Producto;
 import grupo7.poo.exceptions.NoInfoException;
 
 import javafx.event.ActionEvent;
@@ -90,9 +91,7 @@ public class ControladorGuardar implements FileHandler, EmergentWindow {
     }
 
     /* -------------------------------------------------- Methods --------------------------------------------------- */
-
-    public static void saveToXml(ArchivoDatos archivos, String ruta) {
-
+    public static <T> void saveToXml(T archivos, String ruta) {
         //Exportar la clase de archivos
         try (FileWriter fw = new FileWriter(ruta)) {
             JAXBContext context = JAXBContext.newInstance(archivos.getClass());

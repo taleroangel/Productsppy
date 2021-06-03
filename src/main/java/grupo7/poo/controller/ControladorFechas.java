@@ -100,10 +100,6 @@ public class ControladorFechas implements EmergentWindow {
                             idProductoDiaBox.getSelectionModel().getSelectedItem(),
                             calendar
                     ));
-            System.out.println(datos.verListadoPedidos_producto_fecha(
-                    idProductoDiaBox.getSelectionModel().getSelectedItem(),
-                    calendar
-            ).toString());
 
         } catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -123,7 +119,6 @@ public class ControladorFechas implements EmergentWindow {
             tablaServiciosAdicionales.getItems().addAll(
                     datos.serviciosTransporte(tipoTransporteBox.getSelectionModel().getSelectedItem())
             );
-            System.out.println(datos.serviciosTransporte(tipoTransporteBox.getSelectionModel().getSelectedItem()).toString());
         } catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ocurrió un error");

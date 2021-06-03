@@ -1,10 +1,12 @@
 package grupo7.poo.entity;
 
+import grupo7.poo.servicioAdicional.BonoRegalo;
 import grupo7.poo.servicioAdicional.EnvioPrime;
 import grupo7.poo.servicioAdicional.ServicioAdicional;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -105,6 +107,13 @@ public class Pedido {
         return dateFormat.format(date);
     }
 
+    public ServicioAdicional buscarServicioPorId(Long id) {
+        for (ServicioAdicional s : this.serviciosAdicionales)
+            if (s.getCodigoServicio() == id)
+                return s;
+        return null;
+    }
+
     public void setFechaRecibido(Calendar fechaRecibido) {
         this.fechaRecibido = fechaRecibido;
     }
@@ -154,8 +163,8 @@ public class Pedido {
     }
 
     //Important XML Element
-    @XmlElement(name = "servicio", type = ServicioAdicional.class)
-    @XmlElementWrapper(name = "listaServicios")
+    @XmlElementWrapper(name = "servicios")
+    @XmlElement
     public ArrayList<ServicioAdicional> getServiciosAdicionales() {
         return serviciosAdicionales;
     }
