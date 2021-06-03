@@ -17,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -263,10 +262,6 @@ public class ControladorVentana implements Initializable {
     //Inicializador de primera instancia
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Puede dejar NULL como rastro, si hay null pointer exception es porque necesita inicializarse con
-        //  inicializador de segunda instancia
-        gestionDespacho = new ControlDespacho();
-
         tipoProductoBox1.getItems().addAll(
                 TipoProducto.HOGAR, TipoProducto.INDUSTRIAL, TipoProducto.HOSPITALARIO
         );
@@ -290,8 +285,26 @@ public class ControladorVentana implements Initializable {
         } catch (NoInfoException e) {
             e.printCause();
         }
+
         this.datosAplicacion = datos;
-        gestionDespacho = new ControlDespacho(this.datosAplicacion);
+        gestionDespacho = new ControlDespacho(datos);
+
+        //  Render tabs
+        this.renderClienteTab();
+        this.renderProductoTab();
+        this.renderPedidosTab();
+    }
+
+    public void initData(ControlDespacho datos) {
+
+        try {
+            if (datos == null)
+                throw new NoInfoException(this.getClass().getCanonicalName(), true);
+        } catch (NoInfoException e) {
+            e.printCause();
+        }
+
+        gestionDespacho = datos;
 
         //  Render tabs
         this.renderClienteTab();
@@ -543,11 +556,11 @@ public class ControladorVentana implements Initializable {
             fc.setTitle("Guardar un archivo...");
             fc.getExtensionFilters().addAll(
                     (new FileChooser.ExtensionFilter(
-                            "Extensive Markup Language",
-                            "*.xml")),
-                    (new FileChooser.ExtensionFilter(
                             "JavaScript Object Notation",
-                            "*.json")));
+                            "*.json")),
+                    (new FileChooser.ExtensionFilter(
+                            "Extensive Markup Language",
+                            "*.xml")));
 
             File selectedFile = fc.showSaveDialog(null);
             if (selectedFile == null)
@@ -560,6 +573,7 @@ public class ControladorVentana implements Initializable {
 
             } else if (FilenameUtils.getExtension(selectedFile.toString()).equals("json")) {
                 System.out.println("INFO: Identificado archivo JSON");
+                ControladorGuardar.saveToJson(this.datosAplicacion, selectedFile.getAbsolutePath());
             } else {
                 throw new NotValidFileException();
             }
@@ -581,11 +595,11 @@ public class ControladorVentana implements Initializable {
             fc.setTitle("Abrir un archivo...");
             fc.getExtensionFilters().addAll(
                     (new FileChooser.ExtensionFilter(
-                            "Extensive Markup Language",
-                            "*.xml")),
-                    (new FileChooser.ExtensionFilter(
                             "JavaScript Object Notation",
-                            "*.json")));
+                            "*.json")),
+                    (new FileChooser.ExtensionFilter(
+                            "Extensive Markup Language",
+                            "*.xml")));
 
             File selectedFile = fc.showOpenDialog(null);
             if (selectedFile == null)
@@ -596,13 +610,15 @@ public class ControladorVentana implements Initializable {
             if (FilenameUtils.getExtension(selectedFile.toString()).equals("xml")) {
                 System.out.println("INFO: Identificado archivo XML");
                 this.datosAplicacion = ControladorGuardar.getFromXml(selectedFile.getAbsolutePath());
-                gestionDespacho = new ControlDespacho(this.datosAplicacion);
 
             } else if (FilenameUtils.getExtension(selectedFile.toString()).equals("json")) {
                 System.out.println("INFO: Identificado archivo JSON");
+                this.datosAplicacion = ControladorGuardar.getFromJson(selectedFile.getAbsolutePath());
             } else {
                 throw new NotValidFileException();
             }
+
+            gestionDespacho = new ControlDespacho(this.datosAplicacion);
 
         } catch (NotValidFileException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -728,10 +744,10 @@ public class ControladorVentana implements Initializable {
 
             ControladorListaSeparado controller = loader.getController();
 
-            if (datosAplicacion == null)
+            if (gestionDespacho == null)
                 throw new NoInfoException();
 
-            controller.initData(datosAplicacion);
+            controller.initData(gestionDespacho);
 
             stage.setScene(scene);
             stage.setMaximized(false);
@@ -758,14 +774,87 @@ public class ControladorVentana implements Initializable {
 
     @FXML
     void verReportePedidos(ActionEvent event) {
+        try {
+            FileChooser fc = new FileChooser();
+            fc.setInitialFileName("reportePedidos");
+            fc.setTitle("Guardar un archivo...");
+            fc.getExtensionFilters().addAll(
+                    (new FileChooser.ExtensionFilter(
+                            "Extensive Markup Language",
+                            "*.xml")),
+                    (new FileChooser.ExtensionFilter(
+                            "JavaScript Object Notation",
+                            "*.json")));
 
+            File selectedFile = fc.showSaveDialog(null);
+            if (selectedFile == null)
+                throw new NotValidFileException();
+
+            System.out.println("INFO: Leyendo datos del archivo: " + selectedFile.getAbsolutePath());
+            if (FilenameUtils.getExtension(selectedFile.toString()).equals("xml")) {
+                System.out.println("INFO: Identificado archivo XML");
+                ControladorGuardar.saveToXml(
+                        new ListXmlExporter(gestionDespacho.getListaPedidos()), selectedFile.getAbsolutePath());
+
+            } else if (FilenameUtils.getExtension(selectedFile.toString()).equals("json")) {
+                System.out.println("INFO: Identificado archivo JSON");
+                ControladorGuardar.saveToJson((gestionDespacho.getListaPedidos()), selectedFile.getAbsolutePath());
+
+            } else {
+                throw new NotValidFileException();
+            }
+
+        } catch (NotValidFileException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error al identificar el archivo");
+            alert.setHeaderText("Asegurate de seleccionar un nombre apropiado!");
+            alert.setContentText("El archivo tiene que estar en formato .xml o .json");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void verReporteProducto(ActionEvent event) {
-        ControladorGuardar.saveToXml(
-                new MapXmlExporter(this.gestionDespacho.getGestionProductos().getListaProductos()),
-                "./archivos/reporteProductos.xml");
+        try {
+            FileChooser fc = new FileChooser();
+            fc.setInitialFileName("reporteProductos");
+            fc.setTitle("Guardar un archivo...");
+            fc.getExtensionFilters().addAll(
+                    (new FileChooser.ExtensionFilter(
+                            "Extensive Markup Language",
+                            "*.xml")),
+                    (new FileChooser.ExtensionFilter(
+                            "JavaScript Object Notation",
+                            "*.json")));
+
+            File selectedFile = fc.showSaveDialog(null);
+            if (selectedFile == null)
+                throw new NotValidFileException();
+
+            System.out.println("INFO: Leyendo datos del archivo: " + selectedFile.getAbsolutePath());
+            if (FilenameUtils.getExtension(selectedFile.toString()).equals("xml")) {
+                System.out.println("INFO: Identificado archivo XML");
+                ControladorGuardar.saveToXml(
+                        new MapXmlExporter(this.gestionDespacho.getGestionProductos().getListaProductos()),
+                        selectedFile.getAbsolutePath());
+
+            } else if (FilenameUtils.getExtension(selectedFile.toString()).equals("json")) {
+                System.out.println("INFO: Identificado archivo JSON");
+                ControladorGuardar.saveToJson(this.gestionDespacho.getGestionProductos().getListaProductos(),
+                        selectedFile.getAbsolutePath());
+            } else {
+                throw new NotValidFileException();
+            }
+
+        } catch (NotValidFileException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error al identificar el archivo");
+            alert.setHeaderText("Asegurate de seleccionar un nombre apropiado!");
+            alert.setContentText("El archivo tiene que estar en formato .xml o .json");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 
     /* ----------------------------------------------- Tab de pedidos ----------------------------------------------- */

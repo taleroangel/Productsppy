@@ -1,12 +1,16 @@
 package grupo7.poo.entity;
 
+import grupo7.poo.servicioAdicional.BonoRegalo;
+import grupo7.poo.servicioAdicional.EnvioPrime;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlElements;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Clase que contiene todos los datos del programa
@@ -37,8 +41,11 @@ public class ArchivoDatos {
     }
 
     //Accessors Productos
-    @XmlElementWrapper(name = "listaProductos")
-    @XmlElement(name = "producto")
+    @XmlElementWrapper(name = "productos")
+    @XmlElements({
+            @XmlElement(name = "aseo", type = Aseo.class),
+            @XmlElement(name = "fruver", type = Fruver.class)
+    })
     public Map<UUID, Producto> getListaProductos() {
         return listaProductos;
     }

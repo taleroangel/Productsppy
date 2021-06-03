@@ -1,0 +1,168 @@
+{
+  "listaClientes" : {
+    "52221850" : {
+      "nombreCompleto" : "Carlos Alberto Martínez",
+      "cedula" : 52221850,
+      "telefonoContacto" : 755749,
+      "direccion" : "Kr 7ma #58-36 Sur"
+    },
+    "55847986" : {
+      "nombreCompleto" : "Julián Antonio Zamora",
+      "cedula" : 55847986,
+      "telefonoContacto" : 5222185,
+      "direccion" : "Cra. 8 sur #89-89B"
+    },
+    "25839852" : {
+      "nombreCompleto" : "Nelson Rodriguez Fernandez",
+      "cedula" : 25839852,
+      "telefonoContacto" : 5678543,
+      "direccion" : "Cra. 34a sur #45-14B"
+    },
+    "30538956" : {
+      "nombreCompleto" : "Andrea Juliana Moreno",
+      "cedula" : 30538956,
+      "telefonoContacto" : 75851566,
+      "direccion" : "Calle 94 #89-85 Casa 89"
+    }
+  },
+  "listaProductos" : {
+    "6da36ef0-2af3-41e7-b47d-fdae07fef999" : {
+      "type" : "aseo",
+      "prodId" : "6da36ef0-2af3-41e7-b47d-fdae07fef999",
+      "nombreComercial" : "Recursos industriales",
+      "precio" : 100000.0,
+      "tienda" : "CleanIndust",
+      "iva" : 19000.0,
+      "nombreEmpresa" : "SuperClean!",
+      "tieneInvima" : false,
+      "tipo" : "INDUSTRIAL"
+    },
+    "dae189fe-7231-45c9-9cc6-9e2dfc1bd452" : {
+      "type" : "fruver",
+      "prodId" : "dae189fe-7231-45c9-9cc6-9e2dfc1bd452",
+      "nombreComercial" : "Canasta de verduras",
+      "precio" : 44000.0,
+      "tienda" : "Surtideli",
+      "iva" : 8360.0,
+      "esOrganico" : true,
+      "impuestoLocal" : 1200.0,
+      "nombreHacienda" : "Importado"
+    },
+    "7f0d3e07-1199-4c7c-a93e-fef2b9f4ca6d" : {
+      "type" : "aseo",
+      "prodId" : "7f0d3e07-1199-4c7c-a93e-fef2b9f4ca6d",
+      "nombreComercial" : "Shampoo antipulgas para perro",
+      "precio" : 1000.0,
+      "tienda" : "Supermercado superéxito",
+      "iva" : 190.0,
+      "nombreEmpresa" : "MarcaPropia",
+      "tieneInvima" : false,
+      "tipo" : "HOGAR"
+    },
+    "4cb12d54-7234-43f6-b401-0f167d4c2dd2" : {
+      "type" : "fruver",
+      "prodId" : "4cb12d54-7234-43f6-b401-0f167d4c2dd2",
+      "nombreComercial" : "Chocolates para regalar",
+      "precio" : 1000.0,
+      "tienda" : "Dulces sueños",
+      "iva" : 190.0,
+      "esOrganico" : false,
+      "impuestoLocal" : 2500.0,
+      "nombreHacienda" : "Ferrero"
+    }
+  },
+  "listaPedidos" : [ {
+    "numPedido" : "62ef554f-9fc5-4a42-9c2e-49a6476b628d",
+    "fechaRecibido" : 1624165200000,
+    "nombreRepartidor" : "Carlos Antonio",
+    "precio" : 134000.0,
+    "solicitante" : {
+      "nombreCompleto" : "Carlos Alberto Martínez",
+      "cedula" : 52221850,
+      "telefonoContacto" : 755749,
+      "direccion" : "Kr 7ma #58-36 Sur"
+    },
+    "serviciosAdicionales" : [ {
+      "type" : "envioPrime",
+      "codigoServicio" : 1234,
+      "nombreServicio" : "Premium Mismo Día",
+      "precio" : 5000.0,
+      "distancia" : 10.0,
+      "tipo" : "MINIVAN",
+      "numeroCajas" : 1
+    } ],
+    "productoSolicitado" : {
+      "type" : "aseo",
+      "prodId" : "6da36ef0-2af3-41e7-b47d-fdae07fef999",
+      "nombreComercial" : "Recursos industriales",
+      "precio" : 100000.0,
+      "tienda" : "CleanIndust",
+      "iva" : 19000.0,
+      "nombreEmpresa" : "SuperClean!",
+      "tieneInvima" : false,
+      "tipo" : "INDUSTRIAL"
+    }
+  }, {
+    "numPedido" : "34483d28-d5a6-4ec8-8312-7ba6b8431e72",
+    "fechaRecibido" : 1624683600000,
+    "nombreRepartidor" : "Carlos Jesús",
+    "precio" : 26290.0,
+    "solicitante" : {
+      "nombreCompleto" : "Julián Antonio Zamora",
+      "cedula" : 55847986,
+      "telefonoContacto" : 5222185,
+      "direccion" : "Cra. 8 sur #89-89B"
+    },
+    "serviciosAdicionales" : [ {
+      "type" : "bonoRegalo",
+      "codigoServicio" : 1598,
+      "nombreServicio" : "Tarjeta Puntos",
+      "precio" : 25000.0,
+      "comercioAsociado" : "Puntos Colombia",
+      "fechaVencimiento" : 1624683600000,
+      "mensaje" : ""
+    } ],
+    "productoSolicitado" : {
+      "type" : "fruver",
+      "prodId" : "4cb12d54-7234-43f6-b401-0f167d4c2dd2",
+      "nombreComercial" : "Chocolates para regalar",
+      "precio" : 1000.0,
+      "tienda" : "Dulces sueños",
+      "iva" : 190.0,
+      "esOrganico" : false,
+      "impuestoLocal" : 2500.0,
+      "nombreHacienda" : "Ferrero"
+    }
+  }, {
+    "numPedido" : "16ed9a81-a356-4a2e-9551-bd251f6d7e89",
+    "fechaRecibido" : 1654750800000,
+    "nombreRepartidor" : "Maribel Blanco",
+    "precio" : 26290.0,
+    "solicitante" : {
+      "nombreCompleto" : "Andrea Juliana Moreno",
+      "cedula" : 30538956,
+      "telefonoContacto" : 75851566,
+      "direccion" : "Calle 94 #89-85 Casa 89"
+    },
+    "serviciosAdicionales" : [ {
+      "type" : "bonoRegalo",
+      "codigoServicio" : 1598,
+      "nombreServicio" : "Tarjeta Puntos",
+      "precio" : 25000.0,
+      "comercioAsociado" : "Puntos Colombia",
+      "fechaVencimiento" : 1624683600000,
+      "mensaje" : ""
+    } ],
+    "productoSolicitado" : {
+      "type" : "aseo",
+      "prodId" : "7f0d3e07-1199-4c7c-a93e-fef2b9f4ca6d",
+      "nombreComercial" : "Shampoo antipulgas para perro",
+      "precio" : 1000.0,
+      "tienda" : "Supermercado superéxito",
+      "iva" : 190.0,
+      "nombreEmpresa" : "MarcaPropia",
+      "tieneInvima" : false,
+      "tipo" : "HOGAR"
+    }
+  } ]
+}

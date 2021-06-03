@@ -1,5 +1,7 @@
 package grupo7.poo.controller;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import grupo7.poo.entity.ArchivoDatos;
 import javafx.scene.control.Alert;
 
@@ -109,12 +111,85 @@ public class ControladorGuardar {
         return null;
     }
 
-    public static void saveToJson(ArchivoDatos archivo, String ruta) {
-        /// Guardar variable archivo en un JSON en la dirección RUTA
+    public static <T> void saveToJson(T archivo, String ruta) {
+        try (FileWriter out = new FileWriter(ruta);) {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writerWithDefaultPrettyPrinter().writeValue(out, archivo);
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error interno inesperado!");
+            alert.setHeaderText("No se pudo escribir el archivo XML");
+            alert.setContentText("Revisa si el sistema de archivo está en sólo lectura");
+            alert.showAndWait();
+            e.printStackTrace();
+            return;
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error interno inesperado!");
+            alert.setHeaderText("Error interno, causa desconocida");
+            alert.setContentText("Comunícate con los desarrolladores: stackTrace was printed!");
+            alert.showAndWait();
+            e.printStackTrace();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Operación finalizó");
+        alert.setHeaderText("El archivo fue escrito correctamente!");
+        alert.setContentText("El archivo se llama: " + ruta + ", puedes buscarlo en la carpeta del programa!");
+        alert.showAndWait();
     }
+
 
     public static ArchivoDatos getFromJson(String ruta) {
         //Recuperar archivos desde un .json en RUTA y retornar ArchivoDatos
+        try (FileReader fr = new FileReader(ruta);) {
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Archivos cargados desde archivos");
+            alert.setHeaderText("Los archivos fueron cargados!");
+            alert.setContentText("El archivo: " + ruta + " fue cargado");
+            alert.showAndWait();
+
+            return mapper.readValue(fr, ArchivoDatos.class);
+
+        } catch (FileNotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("El archivo no existeo o no pudo ser encontrado!");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("El archivo no pudo leerse, puede estar en modo sólo lectura");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("El archivo se encontraba vacío o no pudo leerse correctamente");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ha ocurrido un error interno...");
+            alert.setHeaderText("Ha ocurrido un error desconocido");
+            alert.setContentText("Verifica el archivo o contacta al desarrollador de la aplicación");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
+
         return null;
     }
 }
