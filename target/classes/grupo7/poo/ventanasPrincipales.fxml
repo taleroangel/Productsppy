@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo7.poo.controller.ControladorVentana">
+    <children>
+        <TabPane layoutY="-4.0" prefHeight="547.0" prefWidth="637.0" style="-fx-background-color: #666666;" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab style="-fx-background-color: #FFFFFF;" text="Inicio">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="519.0" prefWidth="639.0" style="-fx-background-color: #54176B;">
+                            <children>
+                                <AnchorPane layoutY="-1.0" prefHeight="524.0" prefWidth="639.0" style="-fx-background-color: #F7F7F7;">
+                                    <children>
+                                        <ImageView fitHeight="354.0" fitWidth="211.0" layoutX="56.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/productLogo.jpeg" />
+                                            </image>
+                                        </ImageView>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee412a" height="59.0" layoutX="33.0" layoutY="16.0" opacity="0.77" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+                                        <AnchorPane layoutX="311.0" layoutY="1.0" prefHeight="490.0" prefWidth="347.0" style="-fx-background-color: #010101;">
+                                            <children>
+                                                <Text fill="#f4f1f1" layoutX="77.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TODO SOBRE NUESTRA APP!" textAlignment="CENTER" wrappingWidth="193.3367919921875">
+                                                    <font>
+                                                        <Font name="Arial" size="23.0" />
+                                                    </font>
+                                                </Text>
+                                                <Text fill="#fffcfc" layoutX="22.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Esta aplicación  te permite reservar los pedidos que tu desees adicionalmente el servicio ya sea bono de regalo o envio prime a parte puede administrar todos los clientes y los productos existentes,estos productos seran de fruver y aseo" textAlignment="CENTER" wrappingWidth="289.487060546875" />
+                                                <Text fill="WHITE" layoutX="15.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-En la pestaña de &quot;Cliente &quot; usted puede registrarse o modificar su informacion personal" wrappingWidth="296.5784912109375" />
+                                                <Text fill="#faf4f4" layoutX="7.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="339.5386962890625" />
+                                                <Text fill="WHITE" layoutX="15.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-En la pestaña de producto usted puede agregar un producto o ver algun producto en la lista  dependiendo de los tipos de productos para luego hacer el pedido " wrappingWidth="300.66748046875" />
+                                                <Text fill="WHITE" layoutX="14.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-En la pestaña de pedidos usted va a encontrar una lista de las personas que han realizado un pedido,y tambien la lista de pos productos que ya han sido escogidos(para evitar inconvenientes),por otro lado se solicitará el nombre del repartidor " wrappingWidth="299.83465576171875" />
+                                                <ImageView fitHeight="165.0" fitWidth="171.0" layoutX="144.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@emoticon/productos.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="72.0" fitWidth="104.0" layoutX="15.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@emoticon/moneda.png" />
+                                                    </image>
+                                                </ImageView>
+                                    <Button fx:id="helpButton" layoutX="17.0" layoutY="478.0" mnemonicParsing="false" onAction="#showCredits" text="Acerca de" />
+                                            </children>
+                                        </AnchorPane>
+                                        <Text layoutX="43.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productsppy" textAlignment="CENTER">
+                                            <font>
+                                                <Font name="Arial Italic" size="36.0" />
+                                            </font>
+                                        </Text>
+                                        <AnchorPane layoutY="350.0" prefHeight="174.0" prefWidth="312.0" style="-fx-background-color: #C53232;">
+                                            <children>
+                                                <Button fx:id="guardarbtn" layoutX="20.0" layoutY="53.0" mnemonicParsing="false" onAction="#guardarArchivo" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FFFF;" text="         Guardar" />
+                                                <Button fx:id="lecturabtn" layoutX="21.0" layoutY="109.0" mnemonicParsing="false" onAction="#leerArchivo" prefHeight="38.0" prefWidth="118.0" style="-fx-background-color: #FFFF;" text="         Lectura" />
+                                                <ImageView fitHeight="33.0" fitWidth="38.0" layoutX="22.0" layoutY="56.0">
+                                                    <image>
+                                                        <Image url="@emoticon/iconos/save.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Text fill="WHITE" layoutX="35.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Desea hacer cambios en el archivo?" textAlignment="CENTER">
+                                                    <font>
+                                                        <Font size="15.0" />
+                                                    </font>
+                                                </Text>
+                                                <Button fx:id="reportepedidobtn" layoutX="161.0" layoutY="53.0" mnemonicParsing="false" onAction="#verReportePedidos" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #FFFF;" text="          Reportes Pedidos">
+                                                    <font>
+                                                        <Font size="10.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button fx:id="reportesproductobtn" layoutX="161.0" layoutY="109.0" mnemonicParsing="false" onAction="#verReporteProducto" prefHeight="38.0" prefWidth="132.0" style="-fx-background-color: #FFFF;" text="          Reportes Producto   " textAlignment="JUSTIFY">
+                                                    <font>
+                                                        <Font size="10.0" />
+                                                    </font>
+                                                </Button>
+                                                <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="165.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@emoticon/buscar.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="30.0" fitWidth="33.0" layoutX="164.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@emoticon/buscar.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="24.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@emoticon/lectura.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab onSelectionChanged="#requestRender" style="-fx-background-color: #18EAD2;" text="Cliente">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                            <children>
+                                <ImageView fitHeight="223.0" fitWidth="220.0" layoutX="381.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@emoticon/coronavirus.jpg" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="277.0" fitWidth="338.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@emoticon/clientes1.jpg" />
+                                    </image>
+                                </ImageView>
+                                <AnchorPane layoutX="28.0" layoutY="14.0" opacity="0.8" prefHeight="465.0" prefWidth="282.0" style="-fx-background-color: #3FE7E3;">
+                                    <children>
+                                        <TextField fx:id="mostrarIdentificacion" layoutX="14.0" layoutY="204.0" prefHeight="26.0" prefWidth="252.0" />
+                                        <Button fx:id="modificarClientebtn" layoutX="38.0" layoutY="405.0" mnemonicParsing="false" onAction="#modificarCliente" prefHeight="31.0" prefWidth="89.0" text="Modificar" />
+                                        <ImageView fitHeight="106.0" fitWidth="97.0" layoutX="92.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/icons/user.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Text fx:id="mostrarnombreUsuario" layoutX="60.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Usuario" textAlignment="CENTER">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="14.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número de identificación:" />
+                                        <Text layoutX="15.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono:" />
+                                        <TextField fx:id="mostrarTelefonoUsuario" layoutX="15.0" layoutY="260.0" prefHeight="26.0" prefWidth="250.0" />
+                                        <Text layoutX="14.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección:" />
+                                        <TextField fx:id="mostrarDireccionUsuario" layoutX="15.0" layoutY="316.0" prefHeight="26.0" prefWidth="251.0" />
+                                        <Button fx:id="eliminarClientebtn" layoutX="151.0" layoutY="405.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="32.0" prefWidth="89.0" text="Eliminar" />
+                                        <CheckBox fx:id="checkmodificarbtn" layoutX="19.0" layoutY="365.0" mnemonicParsing="false" onAction="#enableModify" text="Modificar?" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="357.0" opacity="0.62" prefHeight="518.0" prefWidth="284.0" style="-fx-background-color: #3FE7E3;">
+                                    <children>
+                                        <Text layoutX="77.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrarse:" textAlignment="CENTER" wrappingWidth="121.0621337890625">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" />
+                                        <TextField fx:id="crearnombreUsuario" layoutX="14.0" layoutY="54.0" prefHeight="26.0" prefWidth="242.0" promptText="Nombre del cliente" />
+                                        <Text layoutX="14.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Número de identificación:" />
+                                        <TextField fx:id="crearIdUsuario" layoutX="14.0" layoutY="124.0" prefHeight="26.0" prefWidth="243.0" promptText="Identificación" />
+                                        <Text layoutX="14.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono:" />
+                                        <TextField fx:id="crearTelefonoUsuario" layoutX="14.0" layoutY="187.0" prefHeight="26.0" prefWidth="244.0" promptText="Teléfono del cliente" />
+                                        <Text layoutX="14.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección:" />
+                                        <TextField fx:id="crearDireccionUsuario" layoutX="14.0" layoutY="248.0" prefHeight="26.0" prefWidth="242.0" promptText="Dirección o Destino" />
+                                        <Text layoutX="13.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clientes registrados:" />
+                                        <Button fx:id="agregarUsuarioBtn" layoutX="191.0" layoutY="281.0" mnemonicParsing="false" onAction="#agregarUsuario" text="Agregar" />
+                                        <AnchorPane layoutX="-3.0" layoutY="323.0" minHeight="0.0" minWidth="0.0" prefHeight="189.0" prefWidth="282.0">
+                                            <children>
+                                                <TableView fx:id="tablaUsuariosRegistrados" layoutX="2.0" onMouseClicked="#mostrarCliente" prefHeight="192.0" prefWidth="282.0">
+                                                    <columns>
+      
+                                                        <TableColumn fx:id="nombreUsuariosRegistrados" prefWidth="131.99999696016312" text="Nombre">
+                                                            <cellValueFactory>
+                                                                <javafx.scene.control.cell.PropertyValueFactory property="NombreCompleto" />
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+      
+                                                        <TableColumn fx:id="cedulaUsuariosRegistrados" minWidth="9.60009765625" prefWidth="129.59999084472656" text="Cédula">
+                                                            <cellValueFactory>
+                                                                <javafx.scene.control.cell.PropertyValueFactory property="Cedula" />
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+      
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab onSelectionChanged="#requestRender" style="-fx-background-color: #DD231E;" text="Producto">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFF;">
+                            <children>
+                                <AnchorPane layoutY="12.0" prefHeight="238.0" prefWidth="304.0" style="-fx-background-color: #7EFFEC;">
+                                    <children>
+                                        <Text layoutX="122.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aseo">
+                                            <font>
+                                                <Font size="28.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="45.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empresa:" />
+                                        <TextField fx:id="nombreEmpresaCamp" layoutX="112.0" layoutY="89.0" prefHeight="26.0" prefWidth="168.0" promptText="Nombre de la empresa" />
+                                        <Text layoutX="31.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Tiene invima?:" />
+                                        <RadioButton fx:id="opcionSIA" layoutX="132.0" layoutY="143.0" mnemonicParsing="false" text="Sí">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="grupoinvima" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="opcionNoA" layoutX="179.0" layoutY="143.0" mnemonicParsing="false" selected="true" text="No" toggleGroup="$grupoinvima" />
+                                        <Text layoutX="22.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de producto:" />
+                                        <ChoiceBox fx:id="tipoProductoBox1" layoutX="127.0" layoutY="180.0" prefWidth="150.0" />
+                                        <ImageView fitHeight="82.0" fitWidth="72.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/iconos/limpieza.png" />
+                                            </image>
+                                        </ImageView>
+                                        <ImageView fitHeight="56.0" fitWidth="66.0" layoutX="224.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/iconos/lavanderia.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutY="266.0" prefHeight="228.0" prefWidth="304.0" style="-fx-background-color: #F8FF0D;">
+                                    <children>
+                                        <Text layoutX="35.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hacienda:" />
+                                        <TextField fx:id="nombreHaciendaCamp" layoutX="104.0" layoutY="74.0" prefHeight="26.0" prefWidth="193.0" promptText="Nombre de la hacienda" />
+                                        <Text layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Impuesto local:" />
+                                        <TextField fx:id="impuestoLocalCamp" layoutX="104.0" layoutY="123.0" prefHeight="26.0" prefWidth="193.0" promptText="Impuesto local" />
+                                        <Text layoutX="22.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿ es Organico?" />
+                                        <RadioButton fx:id="opcionSif" layoutX="115.0" layoutY="178.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="36.0" selected="true" text="Sí">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="grupoOrganico" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="opcionNof" layoutX="157.0" layoutY="178.0" mnemonicParsing="false" text="No" toggleGroup="$grupoOrganico" />
+                                        <Text layoutX="160.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fruver">
+                                            <font>
+                                                <Font size="29.0" />
+                                            </font>
+                                        </Text>
+                                        <ImageView fitHeight="75.0" fitWidth="96.0" layoutX="223.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/iconos/comida.png" />
+                                            </image>
+                                        </ImageView>
+                                        <ImageView fitHeight="62.0" fitWidth="75.0" layoutX="17.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/frutas.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="314.0" prefHeight="229.0" prefWidth="325.0" style="-fx-background-color: #12FFB2;">
+                                    <children>
+                                        <Text layoutX="93.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insertar Producto">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Text>
+                                        <Text layoutX="8.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Comercial:" />
+                                        <TextField fx:id="nombreComercialCampo" layoutX="118.0" layoutY="49.0" prefHeight="26.0" prefWidth="199.0" promptText="Nombre del producto" />
+                                        <Text layoutX="47.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tienda:" />
+                                        <TextField fx:id="nombreTiendaCampo" layoutX="117.0" layoutY="87.0" prefHeight="26.0" prefWidth="199.0" promptText="Nombre de la tienda" />
+                                        <Text layoutX="48.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio:" />
+                                        <Spinner fx:id="precioCampo" editable="true" layoutX="117.0" layoutY="128.0" prefHeight="26.0" prefWidth="199.0" />
+                                        <Text layoutX="25.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:" />
+                                        <RadioButton fx:id="tipoAseo" layoutX="66.0" layoutY="167.0" mnemonicParsing="false" selected="true" text="Aseo">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="grupoTipo" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="tipoFruver" layoutX="130.0" layoutY="167.0" mnemonicParsing="false" text="Fruver" toggleGroup="$grupoTipo" />
+                                        <Button fx:id="agregarProductobnt" layoutX="170.0" layoutY="185.0" mnemonicParsing="false" onAction="#agregarProducto" text="Agregar" />
+                                        <ImageView fitHeight="43.0" fitWidth="62.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/insertar.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Text layoutX="19.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos registrados:" />
+                                        <Button fx:id="modificarProductobtn" layoutX="247.0" layoutY="185.0" mnemonicParsing="false" onAction="#modificarProducto" text="modificar" />
+                                    </children>
+                                </AnchorPane>
+                                <Button fx:id="eliminarProductobtn" layoutX="314.0" layoutY="438.0" mnemonicParsing="false" onAction="#eliminarProducto" text="Eliminar seleccionado" />
+                                <Button fx:id="verListadoporSeparadobtn" layoutX="314.0" layoutY="466.0" mnemonicParsing="false" onAction="#verListadoSeparado" prefHeight="26.0" prefWidth="153.0" text="Ver listado por separado" />
+                                <Text fx:id="precioTotalProductoTexto" layoutX="482.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Producto: 0" textAlignment="CENTER" />
+                                <Text fx:id="ivaProductoTexto" layoutX="482.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IVA: 0%" textAlignment="CENTER" />
+                                <Text fx:id="precioMasIVATotal" layoutX="482.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Total: 0" textAlignment="CENTER" />
+                                    <TableView fx:id="productosRegistados" layoutX="315.0" layoutY="231.0" onMouseClicked="#selectProductList" prefHeight="200.0" prefWidth="319.0">
+                                        <columns>
+                                            <TableColumn fx:id="listaIdProducto" prefWidth="123.99999690055847" text="ProdID">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="ProdId" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+            
+                                            <TableColumn fx:id="listaNombreProductos" minWidth="0.0" prefWidth="97.60000610351562" text="Nombre">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="NombreComercial" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+            
+                                            <TableColumn fx:id="listaPrecioProductos" minWidth="0.0" prefWidth="86.40003967285156" text="Precio">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="Precio" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                        </columns>
+                                    </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab onSelectionChanged="#requestRender" style="-fx-background-color: #E8EA1C;" text="Pedidos">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="680.0" style="-fx-background-color: #FFFF;">
+                            <children>
+                                <AnchorPane layoutY="6.0" opacity="0.81" prefHeight="359.0" prefWidth="328.0" style="-fx-background-color: #281B80;">
+                                    <children>
+                                        <Text fill="#fcfbfb" layoutX="71.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reservar un pedido">
+                                            <font>
+                                                <Font size="19.0" />
+                                            </font>
+                                        </Text>
+                                        <Text fill="#fffcfc" layoutX="43.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID del Cliente:" />
+                                        <ChoiceBox fx:id="boxIDcliente" layoutX="127.0" layoutY="34.0" prefHeight="26.0" prefWidth="195.0" />
+                                        <Text fill="#fffcfc" layoutX="58.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repartidor:" />
+                                        <TextField fx:id="nombreRepartidorCampo" layoutX="126.0" layoutY="72.0" prefHeight="26.0" prefWidth="196.0" promptText="Nombre del repartidor" />
+                                        <Text fill="#fffcfc" layoutX="43.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  ID producto:" />
+                                        <Text fill="#fffcfc" layoutX="6.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione una fecha:" />
+                                        <DatePicker fx:id="seleccionarFechaPedido" layoutX="126.0" layoutY="152.0" prefHeight="26.0" prefWidth="195.0" style="-fx-background-color: #E02FD0;" />
+                                        <ChoiceBox fx:id="boxIDProducto" layoutX="127.0" layoutY="113.0" prefHeight="26.0" prefWidth="195.0" />
+                                        <Text fill="#fffdfd" layoutX="5.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desea agregar servicios adicionales? :" />
+                                        <RadioButton fx:id="sip1" layoutX="218.0" layoutY="205.0" mnemonicParsing="false" onAction="#updateServiciosBtns" text="Sí" textFill="#fffdfd">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="grupoServiciosAdicionales" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="nop1" layoutX="262.0" layoutY="205.0" mnemonicParsing="false" onAction="#updateServiciosBtns" selected="true" text="No" textFill="#fffafa" toggleGroup="$grupoServiciosAdicionales" />
+                                        <Button fx:id="bonoRegalobtn" layoutX="37.0" layoutY="243.0" mnemonicParsing="false" onAction="#abrirBonosRegalo" prefHeight="19.0" prefWidth="101.0" text="Bono de regalo" />
+                                        <Button fx:id="envioPrimeBtn" layoutX="203.0" layoutY="242.0" mnemonicParsing="false" onAction="#abrirEnvioPrime" prefHeight="28.0" prefWidth="88.0" text="Envio prime" />
+                                        <Text fill="#fffbfb" layoutX="23.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ya fue pagado?" />
+                                        <RadioButton fx:id="sipag1" layoutX="125.0" layoutY="283.0" mnemonicParsing="false" selected="true" text="Sí" textFill="#fffdfd">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="grupoPagado" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="nopag2" layoutX="187.0" layoutY="284.0" mnemonicParsing="false" text="No" textFill="WHITE" toggleGroup="$grupoPagado" />
+                                        <Button fx:id="reservar" layoutX="133.0" layoutY="319.0" mnemonicParsing="false" onAction="#reservarPedido" text="Reservar" />
+                                    </children>
+                                </AnchorPane>
+                                <Text fill="#5726ed" layoutX="328.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="309.223876953125">
+                                    <font>
+                                        <Font name="Arial" size="16.0" />
+                                    </font>
+                                </Text>
+                                <AnchorPane layoutX="329.0" layoutY="6.0" prefHeight="84.0" prefWidth="308.0" style="-fx-background-color: #A6FEEF;">
+                                    <children>
+                                        <Text layoutX="14.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listado de pedidos a una fecha en especifico:" wrappingWidth="252.9151611328125">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                        </Text>
+                                        <Button fx:id="verListado1btn" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#listadoFechas" prefHeight="26.0" prefWidth="71.0" text="Ver listado" />
+                                        <ImageView fitHeight="57.0" fitWidth="40.0" layoutX="254.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/calendario.jpg" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="330.0" layoutY="92.0" prefHeight="90.0" prefWidth="309.0" style="-fx-background-color: #95FE88;">
+                                    <children>
+                                        <Text layoutX="14.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listado de pedidos de una persona en especifico:" wrappingWidth="299.4644775390625">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Text>
+                                        <Button fx:id="verListado2btn" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#verListadoProductoPersona" text="Ver listado" />
+                                        <ImageView fitHeight="52.0" fitWidth="39.0" layoutX="259.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@emoticon/listapersona.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="330.0" layoutY="184.0" prefHeight="98.0" prefWidth="308.0" style="-fx-background-color: #F9AA97;">
+                                    <children>
+                                        <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eliminar o modifica pedido:">
+                                            <font>
+                                                <Font name="Arial" size="15.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="idPedidobox" layoutX="14.0" layoutY="32.0" prefHeight="26.0" prefWidth="137.0" />
+                                        <Button fx:id="eliminarPedidoBtn" layoutX="235.0" layoutY="64.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
+                                        <Button fx:id="modificarPedido" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#modificarPedidoSelect" prefHeight="26.0" prefWidth="70.0" text="Modificar" />
+                                    </children>
+                                </AnchorPane>
+                                <ImageView fitHeight="72.0" fitWidth="119.0" layoutX="423.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@emoticon/entrega.jpg" />
+                                    </image>
+                                </ImageView>
+                                    <TableView fx:id="pedidosRegistrados" layoutX="3.0" layoutY="368.0" prefHeight="147.0" prefWidth="629.0">
+                                        <columns>
+                                            <TableColumn fx:id="listaIDpedidos" prefWidth="97.59997099637985" text="ID">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="NumPedido" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+
+                                            <TableColumn fx:id="listaProductosPedidos" prefWidth="101.60004425048828" text="Producto">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="ProductoNombre" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+
+                                            <TableColumn fx:id="listaClientesPedidos" prefWidth="116.00001525878906" text="Cliente">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="ClienteNombre" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+
+                                            <TableColumn fx:id="listaRepartidorPedidos" prefWidth="107.0" text="Repartidor">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="NombreRepartidor" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+
+                                            <TableColumn fx:id="listaFechaPedidos" prefWidth="105.0" text="Fecha">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="FechaRecibidoString" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+
+                                            <TableColumn fx:id="listaPrecioPedidos" prefWidth="101.60003662109375" text="Precio">
+                                                <cellValueFactory>
+                                                    <javafx.scene.control.cell.PropertyValueFactory property="PrecioTotal" />
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                        </columns>
+                                    </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

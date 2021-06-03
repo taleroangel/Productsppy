@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0"
+            prefWidth="600.0" style="-fx-background-color: #404264;" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo7.poo.controller.ControladorFechas">
+    <children>
+        <Text fill="WHITE" layoutX="15.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Seleccione la fecha para ver los pedidos después de ese dia">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <DatePicker fx:id="vistaPedidosFecha" layoutX="14.0" layoutY="40.0"/>
+        <Text fill="WHITE" layoutX="16.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Escoja el ID del producto">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <ChoiceBox fx:id="idProductoDiaBox" layoutX="16.0" layoutY="91.0" prefHeight="25.0" prefWidth="174.0"/>
+        <Separator layoutX="3.0" layoutY="352.0" prefHeight="16.0" prefWidth="600.0"/>
+        <Text fill="WHITE" layoutX="14.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Consultar servicios adicionales por tipo de transporte">
+            <font>
+                <Font size="17.0"/>
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="14.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Escoja el tipo de transporte:" wrappingWidth="187.6328125">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <ChoiceBox fx:id="tipoTransporteBox" layoutX="192.0" layoutY="426.0" prefHeight="23.0" prefWidth="139.0"/>
+        <Button fx:id="volverBtn" layoutX="14.0" layoutY="716.0" mnemonicParsing="false" onAction="#regresar"
+                prefHeight="35.0" prefWidth="132.0" text="Volver"/>
+        <Text fill="WHITE" layoutX="339.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Producto">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <ChoiceBox fx:id="idPedidoBox" layoutX="417.0" layoutY="426.0" prefWidth="150.0"/>
+        <Button fx:id="verPedidosBtn" layoutX="494.0" layoutY="691.0" mnemonicParsing="false"
+                onAction="#updateSecondList" text="Actualizar lista"/>
+        <TableView fx:id="tablaServiciosAdicionales" layoutX="14.0" layoutY="462.0" prefHeight="222.0"
+                   prefWidth="573.0">
+            <columns>
+                <TableColumn fx:id="listaCodigoServicios" prefWidth="75.0" text="Codigo">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="CodigoServicio"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="listaNombreServicios" prefWidth="154.4000244140625" text="Nombre del servicio">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="NombreServicio"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="listaDistanciaServicios" prefWidth="131.20004272460938" text="Distancia">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="Distancia"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="listaCajasSevicios" prefWidth="107.20001220703125" text="No cajas">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="NumeroCajas"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="listaPrecioServicios" prefWidth="107.20001220703125" text="Precio">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="Precio"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <TableView fx:id="tablaPedidosDia" layoutX="14.0" layoutY="136.0" prefHeight="208.0" prefWidth="573.0">
+            <columns>
+                <TableColumn fx:id="listaIdDia" prefWidth="75.0" text="ID">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="NumPedido"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="listaProductosDia" prefWidth="75.0" text="Producto">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="ProductoNombre"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="listaSolicitanteDia" prefWidth="93.60003662109375" text="Solicitante">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="ClienteNombre"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="listaDireccionDia" prefWidth="119.19996643066406" text="Direccion">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="DireccionSolicitante"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="listaRepartidorDia" prefWidth="107.20001220703125" text="Repartidor">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="NombreRepartidor"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="listaFecha" prefWidth="107.20001220703125" text="Fecha">
+                    <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="FechaRecibidoString"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Button fx:id="showButton" layoutX="196.0" layoutY="91.0" mnemonicParsing="false" onAction="#updateList"
+                text="Mostrar"/>
+    </children>
+</AnchorPane>

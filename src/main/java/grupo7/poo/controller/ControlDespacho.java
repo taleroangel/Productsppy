@@ -7,39 +7,54 @@ import grupo7.poo.servicioAdicional.BonoRegalo;
 import grupo7.poo.servicioAdicional.EnvioPrime;
 import grupo7.poo.servicioAdicional.ServicioAdicional;
 
-import java.lang.reflect.Array;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Scanner;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class ControlDespacho {
 
     //Static variables
     static final int ANTICIPACION = 2;
 
-    //Scanner
-    private final Scanner scaner;
-
     //Asociaciones
     private GestionProductos gestionProductos; //GESTION PRODUCTOS
     private GestionCliente gestionCliente; //GESTION CLIENTE
-    private ArrayList<Pedido> pedidos; //PEDIDOS
+    private ArrayList<Pedido> listaPedidos; //PEDIDOS
 
-    //Instance initializer
-    {
-        scaner = new Scanner(System.in);
-        gestionProductos = new GestionProductos();
-        gestionCliente = new GestionCliente();
-        pedidos = new ArrayList<>();
+    public ControlDespacho(ArchivoDatos datos) {
+        //Datos
+        gestionProductos = new GestionProductos(datos);
+        gestionCliente = new GestionCliente(datos);
+        listaPedidos = datos.getListaPedidos();
     }
 
     public ControlDespacho() {
-        this.scaner.useDelimiter("\n");
+
     }
 
     //Getters y Setters
+
+    public ArrayList<EnvioPrime> serviciosTransporte(TipoTransporte e) {
+        ArrayList<EnvioPrime> envios = new ArrayList<>();
+        for (Pedido p : listaPedidos)
+            for (ServicioAdicional s : p.getServiciosAdicionales())
+                if (s instanceof EnvioPrime)
+                    if (((EnvioPrime) s).getTipo() == e)
+                        envios.add((EnvioPrime) s);
+
+        return envios;
+    }
+
+    public ArrayList<Pedido> getPedidosCliente(Cliente cliente) {
+        ArrayList<Pedido> pedidos = new ArrayList<>();
+        for (Pedido p : this.listaPedidos)
+            if (p.getSolicitante().equals(cliente))
+                pedidos.add(p);
+
+        return pedidos;
+    }
 
     public GestionProductos getGestionProductos() {
         return gestionProductos;
@@ -57,12 +72,14 @@ public class ControlDespacho {
         this.gestionCliente = gestionCliente;
     }
 
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+    @XmlElement(name = "pedido", type = Pedido.class)
+    @XmlElementWrapper(name = "listaPedidos")
+    public ArrayList<Pedido> getListaPedidos() {
+        return listaPedidos;
     }
 
-    public void setPedidos(ArrayList<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
     }
 
     /**
@@ -102,7 +119,7 @@ public class ControlDespacho {
             //El mes tiene que ser mayor o igual al mes actual
             if (month >= monthActual) {
                 //El día tiene que tener al menos 2 días de antelacion
-                if ((day) > (dayActual + 2)) {
+                if ((day) > (dayActual + ANTICIPACION)) {
                     return true;
                 }
             }
@@ -159,7 +176,7 @@ public class ControlDespacho {
      * @return Pedido al cual está asociado el producto, si no hay asociación, retorna null
      */
     public Pedido productoEnPedido(UUID id) {
-        for (Pedido pedido : this.pedidos) {
+        for (Pedido pedido : this.listaPedidos) {
             if (pedido.getProductoSolicitado().getProdId().equals(id)) {
                 return pedido;
             }
@@ -174,7 +191,7 @@ public class ControlDespacho {
      * @return Pedido al cual está asociado el cluente, si no hay asociacion retorna null
      */
     public Pedido clienteEnPedido(Long cedula) {
-        for (Pedido pedido : this.pedidos) {
+        for (Pedido pedido : this.listaPedidos) {
             if (pedido.getSolicitante().getCedula().equals(cedula)) {
                 return pedido;
             }
@@ -210,21 +227,32 @@ public class ControlDespacho {
         return true;
     }
 
-    public boolean reservarPedido(Pedido pedido) {
-        //Mostrar precio total
-        pedido.precioTotal();
+    public boolean agregarServicio(Pedido pedido, ServicioAdicional servicio) {
+        if (pedido == null || servicio == null)
+            return false;
 
+        pedido.getServiciosAdicionales().add(servicio);
+        return true;
+    }
+
+    public boolean reservarPedido(Pedido pedido) {
         //Guardar si el pago fue realizado
         if (pedido.isPagado()) {
-            pedidos.add(pedido);
+            listaPedidos.add(pedido);
             return true;
         }
-
         return false;
     }
 
 
-    public void ModificarPedido(boolean fecha_modificada, boolean nombre_modificado, boolean servicios_modificado, Pedido pedi, ArrayList<ServicioAdicional> services, String nuevo_nombre, Calendar calendario) {
+    public void ModificarPedido(
+            boolean fecha_modificada,
+            boolean nombre_modificado,
+            boolean servicios_modificado,
+            Pedido pedi,
+            ArrayList<ServicioAdicional> services,
+            String nuevo_nombre,
+            Calendar calendario) {
 
         //Aplicar los cambios
         if (fecha_modificada) {//del pedido
@@ -268,7 +296,7 @@ public class ControlDespacho {
      * @return Pedido encontrado o retorna null si no se encontró
      */
     public Pedido buscarPedido(UUID id) {
-        for (Pedido p : pedidos) {
+        for (Pedido p : listaPedidos) {
             if (p.getNumPedido().equals(id)) {
                 return p;
             }
@@ -286,25 +314,9 @@ public class ControlDespacho {
         //Si el pedido no existe
         if (this.buscarPedido(id) == null) return null;
         //Retornar el pedido eliminado
-        return pedidos.remove(pedidos.indexOf(buscarPedido(id)));
+        return listaPedidos.remove(listaPedidos.indexOf(buscarPedido(id)));
     }
 
-    /**
-     * Ver el listado de los pedidos
-     */
-    public String verListadoPedidos() {
-        StringBuilder output = new StringBuilder();
-        output.append("*---------------------------------------------------------------*\n");
-        if (this.pedidos.isEmpty()) {
-            output.append("No hay pedidos registrados!!");
-            return output.toString();
-        }
-        for (Pedido recorrer : this.pedidos) {
-            output.append("*---------------------------------------------------------------*\n");
-            output.append(recorrer.toString());
-        }
-        return output.toString();
-    }
 
     /**
      * Mostrar las personas que tienen un pedido para un mismo producto en una misma fecha
@@ -313,13 +325,13 @@ public class ControlDespacho {
      * @param fecha       Fecha de envío del producto
      * @return true, si existen pedidos para ese producto y esa ella
      */
-    public String verListadoPedidos_producto_fecha(UUID id_producto, Calendar fecha) {
-        StringBuilder output = new StringBuilder();
+    public ArrayList<Pedido> verListadoPedidos_producto_fecha(UUID id_producto, Calendar fecha) {
         Producto producto = gestionProductos.buscarProducto(id_producto);
         if (producto == null) {
-            output.append("No se encontraron productos para esa fecha!");
-            return output.toString();
+            return null;
         }
+
+        ArrayList<Pedido> output = new ArrayList<>();
 
         boolean elemento_encontrado = false; //Flag para saber si algún elemento ya fue encontrado
 
@@ -330,26 +342,21 @@ public class ControlDespacho {
 
         int dia, mes, anno; //Día mes y año de la fecha del pedido
 
-        for (Pedido pedido : this.pedidos) { //recorre los pedidos
+        for (Pedido pedido : this.listaPedidos) { //recorre los pedidos
             //Obtener los valores numéricos del calendario
             dia = pedido.getFechaRecibido().get(Calendar.DAY_OF_MONTH); //guarda en cada variable la fhecha de los pedidos
             mes = pedido.getFechaRecibido().get(Calendar.MONTH);
             anno = pedido.getFechaRecibido().get(Calendar.YEAR);
 
-            if (
-                    anno >= anno_Parametro && dia >= dia_Parametro && mes >= mes_Parametro
-            ) { //porque???
+            if (anno >= anno_Parametro && dia >= dia_Parametro && mes >= mes_Parametro) {
                 if (pedido.getProductoSolicitado().getProdId().equals(id_producto)) {
                     //Encontramos un pedido que cumple las condiciones.
                     elemento_encontrado = true;
-                    output.append("*---------------------------------------------------------------*");
-                    output.append("Nombre del solicitante: ").append(pedido.getSolicitante().getNombreCompleto());
-                    output.append("Dirección: ").append(pedido.getSolicitante().getDireccion());
+                    output.add(pedido);
                 }
             }
         }
-
-        return output.toString();
+        return output;
     }
 
     public ArrayList<Producto> productosTipoFruver() {
@@ -378,7 +385,7 @@ public class ControlDespacho {
 
     public double precioPedidosDeAseoPorTipo(TipoProducto tipoABuscar) {
         double preciototal = 0.0d;
-        for (Pedido pedi : this.getPedidos()) {
+        for (Pedido pedi : this.getListaPedidos()) {
             if (pedi != null) {
                 if (pedi.getProductoSolicitado() instanceof Aseo) {
                     if (((Aseo) pedi.getProductoSolicitado()).getTipo() == tipoABuscar) {

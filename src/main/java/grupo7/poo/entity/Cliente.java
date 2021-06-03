@@ -1,12 +1,22 @@
 package grupo7.poo.entity;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * Clase de un cliente
+ */
+@XmlRootElement
 public class Cliente {
 
     //Atributos
-    private Long cedula;
     private String nombreCompleto;
+    private Long cedula;
     private long telefonoContacto;
     private String direccion;
+
+    public Cliente() {
+    }
 
     //Constructores
     public Cliente(
@@ -24,28 +34,11 @@ public class Cliente {
     //Getters y Setters
 
     /**
-     * Obtener la cedula de un clinete
-     *
-     * @return cedula del cliente
-     */
-    public Long getCedula() {
-        return cedula;
-    }
-
-    /**
-     * Cambiar la cedula de un cliente
-     *
-     * @param cedula nueva cedula del cliente
-     */
-    public void setCedula(Long cedula) {
-        this.cedula = cedula;
-    }
-
-    /**
      * Obtener el nombre de un cliente
      *
      * @return String con el nombre del cliente
      */
+    @XmlElement
     public String getNombreCompleto() {
         return nombreCompleto;
     }
@@ -60,10 +53,31 @@ public class Cliente {
     }
 
     /**
+     * Obtener la cedula de un clinete
+     *
+     * @return cedula del cliente
+     */
+
+    @XmlElement
+    public Long getCedula() {
+        return cedula;
+    }
+
+    /**
+     * Cambiar la cedula de un cliente
+     *
+     * @param cedula nueva cedula del cliente
+     */
+    public void setCedula(Long cedula) {
+        this.cedula = cedula;
+    }
+
+    /**
      * Obtener el teléfono del cliente
      *
      * @return numero de teléfono del cliente
      */
+    @XmlElement
     public long getTelefonoContacto() {
         return telefonoContacto;
     }
@@ -82,6 +96,7 @@ public class Cliente {
      *
      * @return String con la direccion del cliente
      */
+    @XmlElement
     public String getDireccion() {
         return direccion;
     }

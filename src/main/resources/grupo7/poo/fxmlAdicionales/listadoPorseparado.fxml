@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grupo7.poo.controller.ControladorListaSeparado">
+    <children>
+        <AnchorPane layoutX="-4.0" layoutY="-3.0" prefHeight="330.0" prefWidth="710.0" style="-fx-background-color: #97F9E9;">
+            <children>
+                <ScrollPane layoutX="28.0" layoutY="53.0" prefHeight="223.0" prefWidth="666.0">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="666.0">
+                            <children>
+                                <TableView fx:id="tablaAseo" layoutX="1.0" layoutY="1.0" prefHeight="210.0" prefWidth="658.0">
+                                    <columns>
+                                        <TableColumn fx:id="listaIdAseo" prefWidth="75.0" text="ID Producto">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="prodId" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaNombreAseo" prefWidth="98.4000244140625" text="Nombre">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="NombreComercial" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaPrecioAseo" prefWidth="108.80000305175781" text="Precio">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="Precio" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaTiendaAseo" prefWidth="104.0" text="Tienda">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="Tienda" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaEmpresaAseo" prefWidth="110.4000244140625" text="Empresa">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="NombreEmpresa" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaTipoAseo" prefWidth="125.5999755859375" text="Tipo">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="Tipo" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+                <Text layoutX="309.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aseo">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="-4.0" layoutY="327.0" prefHeight="330.0" prefWidth="710.0" style="-fx-background-color: #EE5B54;">
+            <children>
+                <ScrollPane layoutX="38.0" layoutY="48.0" prefHeight="235.0" prefWidth="657.0">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="222.0" prefWidth="664.0">
+                            <children>
+                                <TableView fx:id="tablaFruver" layoutY="1.0" prefHeight="223.0" prefWidth="659.0">
+                                    <columns>
+                                        <TableColumn fx:id="listaIdFruver" prefWidth="85.60000306367874" text="ID Producto">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="ProdId" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaNombreFruver" prefWidth="104.0" text="Nombre">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="NombreComercial" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaTiendaFruver" prefWidth="109.59999084472656" text="Tienda">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="Tienda" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaHaciendaFruver" prefWidth="104.800048828125" text="Hacienda">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="NombreHacienda" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaImpuestoFruver" prefWidth="97.59991455078125" text="Impuesto local">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="ImpuestoLocal" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+
+                                        <TableColumn fx:id="listaPrecioFruver" prefWidth="80.80010986328125" text="Precio">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="Precio" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn fx:id="listaOrganicoFruver" prefWidth="63.199951171875" text="Organico">
+                                            <cellValueFactory>
+                                                <javafx.scene.control.cell.PropertyValueFactory property="Organico" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+                <Text layoutX="301.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruver">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Text>
+                <Button fx:id="volverTablasBtn" layoutX="38.0" layoutY="297.0" mnemonicParsing="false" onAction="#regresar" prefHeight="26.0" prefWidth="76.0" text="volver" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

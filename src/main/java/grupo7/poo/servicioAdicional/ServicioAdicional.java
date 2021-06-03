@@ -1,5 +1,11 @@
 package grupo7.poo.servicioAdicional;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class ServicioAdicional { // clase abstracta de bonoregalo y envioPrima
 
     //Atributos
@@ -21,6 +27,10 @@ public abstract class ServicioAdicional { // clase abstracta de bonoregalo y env
     public ServicioAdicional(long codigoServicio, double precio) {
         this.codigoServicio = codigoServicio;
         this.precio = precio;
+    }
+
+    //Constructor por defecto requerido por JAXB
+    public ServicioAdicional() {
     }
 
     //Getters y Setters
@@ -46,6 +56,10 @@ public abstract class ServicioAdicional { // clase abstracta de bonoregalo y env
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String getWhatType() {
+        return this.getClass().getSimpleName();
     }
 
     @Override

@@ -2,17 +2,29 @@ package grupo7.poo.controller;
 
 //Imports
 
+import grupo7.poo.entity.ArchivoDatos;
 import grupo7.poo.entity.Producto;
 
 import java.util.*;
 
 public class GestionProductos {
     //Asociaciones
-    private final Map<UUID, Producto> listaProductos;  //MAP donde la llave es prodId que es el id del producto
+    private Map<UUID, Producto> listaProductos;  //MAP donde la llave es prodId que es el id del producto
 
     //Inicializador de instancia
-    {
-        listaProductos = new HashMap<>();
+    public GestionProductos(ArchivoDatos archivo) {
+        listaProductos = archivo.getListaProductos();
+    }
+
+    public GestionProductos(Map<UUID, Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    /**
+     * Establecer la lista de productos -> Map<UUID, Producto>, Map donde la llave es el prodId
+     */
+    public void setListaProductos(Map<UUID, Producto> listaProductos) {
+        this.listaProductos = listaProductos;
     }
 
     /**
@@ -78,23 +90,5 @@ public class GestionProductos {
         Producto producto = this.buscarProducto(id);
         if (producto == null) return null;
         return listaProductos.remove(producto.getProdId());
-    }
-
-    /**
-     * Imprimir la lista de los productos
-     */
-    public String imprimirListaProductos() {
-        StringBuilder output = new StringBuilder();
-        output.append("*---------------------------------------------------------------*\n");
-        if (this.listaProductos.isEmpty()) {
-            output.append("No hay productos registrados!!");
-            return output.toString();
-        }
-
-        for (Producto recorrer : this.listaProductos.values()) {
-            output.append(recorrer.toString()).append('\n');
-            output.append("*---------------------------------------------------------------*\n");
-        }
-        return output.toString();
     }
 }

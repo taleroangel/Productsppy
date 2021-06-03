@@ -1,11 +1,33 @@
 package grupo7.poo.entity;
 
-public class Aseo extends Producto { //-------------------------------subclase de producto
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Aseo")
+public class Aseo extends Producto {
 
     //Atributos
     private String nombreEmpresa;
     private boolean tieneInvima;
     private TipoProducto tipo;
+
+    //Constructores
+    public Aseo(
+            String nombreComercial,
+            double precio,
+            String tienda,
+            String nombreEmpresa,
+            boolean tieneInvima,
+            TipoProducto tipo
+    ) {
+        super(nombreComercial, precio, tienda);
+        this.nombreEmpresa = nombreEmpresa;
+        this.tieneInvima = tieneInvima;
+        this.tipo = tipo;
+    }
+
+    //Constructor vacío requerido por JAXB
+    public Aseo() {
+    }
 
     /**
      * Obtener el nombre de la empresa
@@ -61,20 +83,6 @@ public class Aseo extends Producto { //-------------------------------subclase d
         this.tipo = tipo;
     }
 
-    //Constructores
-    public Aseo(
-            String nombreComercial,
-            double precio,
-            String tienda,
-            String nombreEmpresa,
-            boolean tieneInvima,
-            TipoProducto tipo
-    ) {
-        super(nombreComercial, precio, tienda);
-        this.nombreEmpresa = nombreEmpresa;
-        this.tieneInvima = tieneInvima;
-        this.tipo = tipo;
-    }
 
     /**
      * Calcular el precio de un producto de Aseo
