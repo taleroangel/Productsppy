@@ -1,11 +1,25 @@
 package grupo7.poo.servicioAdicional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import grupo7.poo.entity.Aseo;
+import grupo7.poo.entity.Fruver;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = BonoRegalo.class, name = "bonoRegalo"),
+        @JsonSubTypes.Type(value = EnvioPrime.class, name = "envioPrime")
+})
 public abstract class ServicioAdicional { // clase abstracta de bonoregalo y envioPrima
 
     //Atributos
@@ -58,6 +72,7 @@ public abstract class ServicioAdicional { // clase abstracta de bonoregalo y env
         this.precio = precio;
     }
 
+    @JsonIgnore
     public String getWhatType() {
         return this.getClass().getSimpleName();
     }

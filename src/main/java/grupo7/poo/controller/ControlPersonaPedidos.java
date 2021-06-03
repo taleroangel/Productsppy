@@ -1,6 +1,5 @@
 package grupo7.poo.controller;
 
-import grupo7.poo.entity.ArchivoDatos;
 import grupo7.poo.entity.Cliente;
 import grupo7.poo.entity.EmergentWindow;
 import grupo7.poo.entity.Pedido;

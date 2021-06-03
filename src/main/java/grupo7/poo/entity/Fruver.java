@@ -1,8 +1,11 @@
 package grupo7.poo.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@XmlRootElement(name = "Fruver")
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "fruver")
 public class Fruver extends Producto {
 
     //Atributos
@@ -29,11 +32,19 @@ public class Fruver extends Producto {
     public Fruver() {
     }
 
+    @XmlTransient
+    @JsonIgnore
     public Boolean getOrganico() {
         return esOrganico;
     }
 
+    @XmlTransient
+    @JsonIgnore
     public boolean isOrganico() {
+        return esOrganico;
+    }
+
+    public boolean isEsOrganico() {
         return esOrganico;
     }
 
@@ -42,6 +53,8 @@ public class Fruver extends Producto {
      *
      * @return producto orgánico
      */
+    @XmlTransient
+    @JsonIgnore
     public boolean esOrganico() {
         return esOrganico;
     }
@@ -92,6 +105,8 @@ public class Fruver extends Producto {
     }
 
 
+    @XmlTransient
+    @JsonIgnore
     @Override
     public double calcularPrecio() {
         double precioTotal = super.calcularPrecio() + this.impuestoLocal;

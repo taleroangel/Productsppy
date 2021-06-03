@@ -61,30 +61,29 @@ public class ControladorListaSeparado implements EmergentWindow {
     private Button volverTablasBtn;
 
     /* --------------------------------------------- Variables privadas --------------------------------------------- */
-    private ArchivoDatos datos;
+    private ControlDespacho control;
 
     /* ---------------------------------------------- Inicializadores ----------------------------------------------- */
 
     //Inicializador de segunda instancia, tiene que llamarse explícitamente
-    public void initData(ArchivoDatos datos) {
+    public void initData(ControlDespacho datos) {
         try {
             if (datos == null)
                 throw new NoInfoException(this.getClass().getCanonicalName(), true);
         } catch (NoInfoException e) {
             e.printCause();
         }
-        this.datos = datos;
+        control = datos;
 
         tablaAseo.getItems().clear();
         tablaFruver.getItems().clear();
 
-        ControlDespacho despacho = new ControlDespacho(datos);
         tablaAseo.getItems().clear();
-        for (Producto a : despacho.productosTipoAseo())
+        for (Producto a : control.productosTipoAseo())
             tablaAseo.getItems().add((Aseo) a);
 
         tablaFruver.getItems().clear();
-        for (Producto a : despacho.productosTipoFruver())
+        for (Producto a : control.productosTipoFruver())
             tablaFruver.getItems().add((Fruver) a);
     }
 

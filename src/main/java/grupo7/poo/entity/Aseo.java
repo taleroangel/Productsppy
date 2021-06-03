@@ -1,8 +1,11 @@
 package grupo7.poo.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@XmlRootElement(name = "Aseo")
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "aseo")
 public class Aseo extends Producto {
 
     //Atributos
@@ -89,6 +92,8 @@ public class Aseo extends Producto {
      *
      * @return Precio del producto
      */
+    @XmlTransient
+    @JsonIgnore
     @Override
     public double calcularPrecio() {
         double precioTotal = super.calcularPrecio();

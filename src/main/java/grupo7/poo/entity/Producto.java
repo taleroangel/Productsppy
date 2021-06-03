@@ -1,15 +1,25 @@
 package grupo7.poo.entity;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import javax.xml.bind.annotation.*;
 import java.util.UUID;
 
 /**
  * Clase base para Fruver y Aseo
  */
-@XmlRootElement(name = "Producto")
-public class Producto {
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Aseo.class, name = "aseo"),
+        @JsonSubTypes.Type(value = Fruver.class, name = "fruver")
+})
+public abstract class Producto {
     // Atributos
     protected UUID prodId;
     protected String nombreComercial;
@@ -49,7 +59,6 @@ public class Producto {
     }
 
     public Producto() {
-        prodId = UUID.randomUUID();
     }
 
     // Getters y Setters
@@ -60,7 +69,6 @@ public class Producto {
      * @return UUID del producto
      */
 
-    @XmlElement
     public UUID getProdId() {
         return prodId;
     }
@@ -70,6 +78,8 @@ public class Producto {
      *
      * @return UUID String version
      */
+    @XmlTransient
+    @JsonIgnore
     public String getProdIDString() {
         return prodId.toString();
     }
@@ -88,7 +98,6 @@ public class Producto {
      *
      * @return Nombre comercial de un producto
      */
-    @XmlElement
     public String getNombreComercial() {
         return nombreComercial;
     }
@@ -107,7 +116,6 @@ public class Producto {
      *
      * @return Precio del producto
      */
-    @XmlElement
     public double getPrecio() {
         return precio;
     }
@@ -128,7 +136,6 @@ public class Producto {
      *
      * @return Nombre de la tienda
      */
-    @XmlElement
     public String getTienda() {
         return tienda;
     }
@@ -147,9 +154,8 @@ public class Producto {
      *
      * @return precio del IVA de un producto
      */
-    @XmlElement(name = "IVAProducto")
     public double getIva() {
-        return iva;
+        return this.iva;
     }
 
     /**
@@ -157,8 +163,9 @@ public class Producto {
      *
      * @return Precio del producto con el IVA
      */
+    @JsonIgnore
     public double calcularPrecio() {
-        return this.precio + (this.precio * (this.iva/100.0));
+        return this.precio + (this.precio * (this.iva / 100.0));
     }
 
     @Override

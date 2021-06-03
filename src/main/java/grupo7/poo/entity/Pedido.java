@@ -1,5 +1,6 @@
 package grupo7.poo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import grupo7.poo.servicioAdicional.BonoRegalo;
 import grupo7.poo.servicioAdicional.EnvioPrime;
 import grupo7.poo.servicioAdicional.ServicioAdicional;
@@ -8,7 +9,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -99,6 +99,7 @@ public class Pedido {
         return fechaRecibido;
     }
 
+    @JsonIgnore
     public String getFechaRecibidoString() {
         if (fechaRecibido == null)
             fechaRecibido = Calendar.getInstance();
@@ -107,6 +108,7 @@ public class Pedido {
         return dateFormat.format(date);
     }
 
+    @JsonIgnore
     public ServicioAdicional buscarServicioPorId(Long id) {
         for (ServicioAdicional s : this.serviciosAdicionales)
             if (s.getCodigoServicio() == id)
@@ -123,6 +125,7 @@ public class Pedido {
         return pagado;
     }
 
+    @JsonIgnore
     public Boolean getPagado() {
         return pagado;
     }
@@ -146,6 +149,7 @@ public class Pedido {
         return solicitante;
     }
 
+    @JsonIgnore
     public String getDireccionSolicitante() {
         return solicitante.getDireccion();
     }
@@ -154,6 +158,7 @@ public class Pedido {
         this.precio = precio;
     }
 
+    @JsonIgnore
     public String getClienteNombre() {
         return getSolicitante().getNombreCompleto();
     }
@@ -183,6 +188,7 @@ public class Pedido {
         return productoSolicitado;
     }
 
+    @JsonIgnore
     public String getProductoNombre() {
         return productoSolicitado.getNombreComercial();
     }
@@ -212,6 +218,7 @@ public class Pedido {
     /**
      * Calcular el precio total de un pedido
      */
+    @JsonIgnore
     public double getPrecioTotal() {
         //Calcular costo del pedido
         double precioServicios = 0;
