@@ -2,6 +2,9 @@
 /.vscode/
 /.idea/
 
+# Java compilation target
+/target/
+
 #Eclipse class path
 .classpath
 .project
