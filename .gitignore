@@ -1,6 +1,7 @@
 #IntelliJ Folder
 /.vscode/
 /.idea/
+*.iml
 
 # Java compilation target
 /target/
