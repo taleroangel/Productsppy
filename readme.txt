@@ -1,5 +1,3 @@
-Grupo 7:
-Ángel David Talero Peñuela
-Karol Geraldine Ceballos Castro
-Sebastián Camilo Hernando Murcia Sierra
-Valentina Rozo Gonzalez
+# ProyectoPOO
+Sistema de gestión para supermercado, Proyecto final de la materia de 'Programación Orientada a Objectos'
+Pontificia Universidad Javeriana (2020)
